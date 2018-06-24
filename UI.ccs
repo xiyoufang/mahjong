@@ -1,0 +1,16 @@
+<Solution>
+  <PropertyGroup Name="UI" Version="3.10.0.0" Type="CocosStudio" />
+  <SolutionFolder>
+    <Group ctype="ResourceGroup">
+      <RootFolder Name=".">
+        <Image Name="HelloWorld.png" />
+        <Project Name="MainScene.csd" Type="Scene" />
+        <Project Name="HelloLayer.csd" Type="Layer" />
+        <Folder Name="HelloLayer">
+          <Image Name="bg_hello.png" />
+          <Image Name="bt_logon.png" />
+        </Folder>
+      </RootFolder>
+    </Group>
+  </SolutionFolder>
+</Solution>

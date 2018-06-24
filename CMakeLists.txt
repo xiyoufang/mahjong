@@ -56,10 +56,18 @@ include_directories(
 list(APPEND GAME_SOURCE
      Classes/AppDelegate.cpp
      Classes/HelloWorldScene.cpp
+     Classes/GameSceneManager.cpp
+     Classes/ViewControl.cpp
+     Classes/HelloLayer.cpp
+     Classes/ViewObject.cpp
      )
 list(APPEND GAME_HEADER
      Classes/AppDelegate.h
      Classes/HelloWorldScene.h
+     Classes/GameSceneManager.h
+     Classes/ViewControl.h
+     Classes/HelloLayer.h
+     Classes/ViewObject.h
      )
 
 if(ANDROID)
