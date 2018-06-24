@@ -28,7 +28,6 @@
     <Item Key="TabsParamsKey">
       <Value ctype="TabsInfo">
         <OpenedDocuments>
-          <FilePathData Path="MainScene.csd" />
           <FilePathData Path="HelloLayer.csd" />
         </OpenedDocuments>
         <ActiveDocument Path="HelloLayer.csd" />

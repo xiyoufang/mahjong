@@ -3,13 +3,13 @@
   <SolutionFolder>
     <Group ctype="ResourceGroup">
       <RootFolder Name=".">
+        <Folder Name="HelloLayer">
+          <Image Name="bt_logon.png" />
+          <Image Name="im_bg_1.jpg" />
+        </Folder>
+        <Project Name="HelloLayer.csd" Type="Layer" />
         <Image Name="HelloWorld.png" />
         <Project Name="MainScene.csd" Type="Scene" />
-        <Project Name="HelloLayer.csd" Type="Layer" />
-        <Folder Name="HelloLayer">
-          <Image Name="bg_hello.png" />
-          <Image Name="bt_logon.png" />
-        </Folder>
       </RootFolder>
     </Group>
   </SolutionFolder>

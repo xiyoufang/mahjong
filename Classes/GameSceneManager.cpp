@@ -49,6 +49,6 @@ void GameSceneManager::setRootLayer(Node* pLayer){
  * 获取可视大小
  * @return
  */
-Size GameSceneManager::getVisibleSize() {
+cocos2d::Size GameSceneManager::getVisibleSize() {
     return Director::getInstance()->getVisibleSize();
 }

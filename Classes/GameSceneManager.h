@@ -46,7 +46,7 @@ public:
      * 获取可见区域大小
      * @return
      */
-    Size getVisibleSize();
+    cocos2d::Size getVisibleSize();
 
     /**
      * 获取GameSceneManager单例

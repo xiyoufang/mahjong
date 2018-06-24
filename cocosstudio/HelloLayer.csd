@@ -17,7 +17,7 @@
                 <CColor A="255" R="255" G="255" B="255" />
                 <PrePosition X="0.5000" Y="0.5000" />
                 <PreSize X="1.0000" Y="1.0000" />
-                <FileData Type="Normal" Path="HelloLayer/bg_hello.png" Plist="" />
+                <FileData Type="Normal" Path="HelloLayer/im_bg_1.jpg" Plist="" />
               </AbstractNodeData>
               <AbstractNodeData Name="Button_Logon" ActionTag="459328731" Tag="100" IconVisible="False" LeftMargin="526.0000" RightMargin="526.0000" TopMargin="520.0000" BottomMargin="120.0000" TouchEnable="True" FontSize="14" LeftEage="15" RightEage="15" TopEage="11" BottomEage="11" Scale9OriginX="15" Scale9OriginY="11" Scale9Width="198" Scale9Height="58" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="ButtonObjectData">
                 <Size X="228.0000" Y="80.0000" />
