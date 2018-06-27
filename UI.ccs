@@ -5,7 +5,8 @@
       <RootFolder Name=".">
         <Folder Name="HelloLayer">
           <Image Name="bt_logon.png" />
-          <Image Name="im_bg_1.jpg" />
+          <Image Name="im_bg.png" />
+          <Image Name="im_logo.png" />
         </Folder>
         <Project Name="HelloLayer.csd" Type="Layer" />
         <Image Name="HelloWorld.png" />

@@ -37,7 +37,7 @@ void ViewControl::onExit() {
  */
 void ViewControl::onViewNotify(Ref *render) {
     if (render == NULL){    //进入游戏
-        GameSceneManager::getInstance()->setRootLayer(HelloLayer::create()->getLayer());
+        GameSceneManager::getInstance()->setRootLayer(HelloLayer::create()->createLayer());
         return;
     }
     ViewObject *pObject = (ViewObject *) render;
