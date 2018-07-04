@@ -22,11 +22,17 @@ protected:
      */
     Node *m_pLayer; //层节点
 
+
     /**
      * 设置触屏监听
      * @param pNode
+     *  根节点
+     * @param button
+     *  监听按钮组件
+     * @param imageView
+     *  监听ImageView组件
      */
-    void setTouchEventListener(Node *pNode);
+    void setTouchEventListener(Node *pNode, bool button = true, bool imageView = false);
 
     /**
      * 触屏事件
@@ -34,6 +40,11 @@ protected:
      * @param eventType
      */
     void onTouch(Ref *ref, ui::Widget::TouchEventType eventType);
+
+    /**
+     * 从Csb文件读取
+     */
+    virtual void initLayer();
 
     /**
     * 触屏开始
@@ -65,7 +76,11 @@ protected:
 
 public:
 
-    virtual Node *createLayer() = 0;
+    /**
+     * 获取Layer
+     * @return
+     */
+    virtual Node *GetLayer() = 0;
 
 };
 

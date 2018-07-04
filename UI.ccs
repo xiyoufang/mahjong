@@ -3,11 +3,18 @@
   <SolutionFolder>
     <Group ctype="ResourceGroup">
       <RootFolder Name=".">
+        <Folder Name="AlertLayer">
+          <Image Name="alertbg.png" />
+          <Image Name="cancel.png" />
+          <Image Name="ok.png" />
+        </Folder>
         <Folder Name="HelloLayer">
           <Image Name="bt_logon.png" />
           <Image Name="im_bg.png" />
           <Image Name="im_logo.png" />
         </Folder>
+        <Project Name="AlertLayer.csd" Type="Layer" />
+        <TTF Name="DFYuanW7-GB2312.ttf" />
         <Project Name="HelloLayer.csd" Type="Layer" />
         <Image Name="HelloWorld.png" />
         <Project Name="MainScene.csd" Type="Scene" />

@@ -18,20 +18,17 @@ using namespace cocos2d;
  */
 class HelloLayer : public BaseUILayer {
 
-    //Error:(23, 17) allocating an object of abstract class type 'HelloLayer'
 
 public:
     CREATE_FUNC(HelloLayer)
     HelloLayer();
     ~HelloLayer();
-    void onEnter() override;
-    void onExit() override;
-    bool init() override;
-    virtual Node *createLayer() override ;
 
 protected:
-    virtual void onTouchEnded(ui::Widget *pWidget, const char *pName);
-
+    virtual void onTouchEnded(ui::Widget *pWidget, const char *pName);  //按钮事件处理
+    virtual void initLayer();     //初始化层
+public:
+    virtual Node *GetLayer();     //获取层Layer
 };
 
 

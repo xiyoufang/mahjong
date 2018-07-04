@@ -54,8 +54,12 @@
 		521A8EAA19F11F5000D177D7 /* fonts in Resources */ = {isa = PBXBuildFile; fileRef = 521A8EA819F11F5000D177D7 /* fonts */; };
 		52B47A471A53D09C004E4C60 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 52B47A461A53D09B004E4C60 /* Security.framework */; };
 		8262943E1AAF051F00CB7CF7 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8262943D1AAF051F00CB7CF7 /* Security.framework */; };
+		B39AA0A93053AEEFB46C7223 /* UIHelper.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B39AA2242FF0B5AAB9D8591F /* UIHelper.cpp */; };
 		B39AA358EE6530903CA1F93B /* BaseUILayer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B39AA79735B0E2C7464E7731 /* BaseUILayer.cpp */; };
+		B39AA3E5A94C8346079DE743 /* UIHelper.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B39AA2242FF0B5AAB9D8591F /* UIHelper.cpp */; };
+		B39AA88B9FD4DE06EDA98B9B /* AlertLayer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B39AAD2E5BAB7DB326F7E334 /* AlertLayer.cpp */; };
 		B39AAA76F192393C162BD0FB /* BaseUILayer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B39AA79735B0E2C7464E7731 /* BaseUILayer.cpp */; };
+		B39AAF12278933FFFC30FB8C /* AlertLayer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B39AAD2E5BAB7DB326F7E334 /* AlertLayer.cpp */; };
 		BF171245129291EC00B8313A /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BF170DB012928DE900B8313A /* OpenGLES.framework */; };
 		BF1712471292920000B8313A /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = BF170DB412928DE900B8313A /* libz.dylib */; };
 		BF1C47F01293687400B63C5D /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BF1C47EA1293683800B63C5D /* QuartzCore.framework */; };
@@ -151,8 +155,12 @@
 		521A8EA819F11F5000D177D7 /* fonts */ = {isa = PBXFileReference; lastKnownFileType = folder; path = fonts; sourceTree = "<group>"; };
 		52B47A461A53D09B004E4C60 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/Security.framework; sourceTree = DEVELOPER_DIR; };
 		8262943D1AAF051F00CB7CF7 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
+		B39AA2242FF0B5AAB9D8591F /* UIHelper.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = UIHelper.cpp; sourceTree = "<group>"; };
 		B39AA45157A7E648BDD42253 /* BaseUILayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseUILayer.h; sourceTree = "<group>"; };
 		B39AA79735B0E2C7464E7731 /* BaseUILayer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = BaseUILayer.cpp; sourceTree = "<group>"; };
+		B39AAA9E0C14E935242983E8 /* UIHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIHelper.h; sourceTree = "<group>"; };
+		B39AAD0591532E69674A88CD /* AlertLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AlertLayer.h; sourceTree = "<group>"; };
+		B39AAD2E5BAB7DB326F7E334 /* AlertLayer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = AlertLayer.cpp; sourceTree = "<group>"; };
 		BF170DB012928DE900B8313A /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
 		BF170DB412928DE900B8313A /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
 		BF1C47EA1293683800B63C5D /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
@@ -315,6 +323,10 @@
 				46880B8719C43A87006E1F66 /* HelloWorldScene.h */,
 				B39AA79735B0E2C7464E7731 /* BaseUILayer.cpp */,
 				B39AA45157A7E648BDD42253 /* BaseUILayer.h */,
+				B39AAD2E5BAB7DB326F7E334 /* AlertLayer.cpp */,
+				B39AAD0591532E69674A88CD /* AlertLayer.h */,
+				B39AA2242FF0B5AAB9D8591F /* UIHelper.cpp */,
+				B39AAA9E0C14E935242983E8 /* UIHelper.h */,
 			);
 			name = Classes;
 			path = ../Classes;
@@ -488,6 +500,8 @@
 				1AF87B8A1F6F7822007BE51C /* main.m in Sources */,
 				46880B8A19C43A87006E1F66 /* HelloWorldScene.cpp in Sources */,
 				B39AA358EE6530903CA1F93B /* BaseUILayer.cpp in Sources */,
+				B39AA88B9FD4DE06EDA98B9B /* AlertLayer.cpp in Sources */,
+				B39AA0A93053AEEFB46C7223 /* UIHelper.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -503,6 +517,8 @@
 				46880B8B19C43A87006E1F66 /* HelloWorldScene.cpp in Sources */,
 				2591676F20DFE56200E5B773 /* GameSceneManager.cpp in Sources */,
 				B39AAA76F192393C162BD0FB /* BaseUILayer.cpp in Sources */,
+				B39AAF12278933FFFC30FB8C /* AlertLayer.cpp in Sources */,
+				B39AA3E5A94C8346079DE743 /* UIHelper.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
