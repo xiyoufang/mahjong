@@ -19,27 +19,27 @@
                 <PreSize X="1.0000" Y="1.0000" />
                 <FileData Type="Normal" Path="AlertLayer/alertbg.png" Plist="" />
               </AbstractNodeData>
-              <AbstractNodeData Name="ScrollView_Alert_Content" ActionTag="-1387019081" Tag="16" IconVisible="False" LeftMargin="220.0000" RightMargin="220.0000" TopMargin="220.0000" BottomMargin="200.0000" TouchEnable="True" ClipAble="False" BackColorAlpha="0" ComboBoxIndex="1" ColorAngle="90.0000" ScrollDirectionType="Vertical" ctype="ScrollViewObjectData">
-                <Size X="840.0000" Y="300.0000" />
+              <AbstractNodeData Name="ScrollView_Alert_Content" ActionTag="-1387019081" Tag="16" IconVisible="False" LeftMargin="220.0000" RightMargin="220.0000" TopMargin="260.0000" BottomMargin="200.0000" TouchEnable="True" ClipAble="False" BackColorAlpha="0" ComboBoxIndex="1" ColorAngle="90.0000" ScrollDirectionType="Vertical" ctype="ScrollViewObjectData">
+                <Size X="840.0000" Y="260.0000" />
                 <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
-                <Position X="640.0000" Y="350.0000" />
+                <Position X="640.0000" Y="330.0000" />
                 <Scale ScaleX="1.0000" ScaleY="1.0000" />
                 <CColor A="255" R="255" G="255" B="255" />
-                <PrePosition X="0.5000" Y="0.4861" />
-                <PreSize X="0.6563" Y="0.4167" />
+                <PrePosition X="0.5000" Y="0.4583" />
+                <PreSize X="0.6563" Y="0.3611" />
                 <SingleColor A="255" R="255" G="150" B="100" />
                 <FirstColor A="255" R="255" G="150" B="100" />
                 <EndColor A="255" R="255" G="255" B="255" />
                 <ColorVector ScaleY="1.0000" />
-                <InnerNodeSize Width="841" Height="300" />
+                <InnerNodeSize Width="841" Height="260" />
               </AbstractNodeData>
-              <AbstractNodeData Name="Text_Alert_Title" ActionTag="-1435265957" Tag="17" IconVisible="False" LeftMargin="593.0000" RightMargin="593.0000" TopMargin="167.0000" BottomMargin="507.0000" FontSize="46" LabelText="提示" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="TextObjectData">
+              <AbstractNodeData Name="Text_Alert_Title" ActionTag="-1435265957" Tag="17" IconVisible="False" LeftMargin="593.0000" RightMargin="593.0000" TopMargin="177.0000" BottomMargin="497.0000" FontSize="46" LabelText="提示" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="TextObjectData">
                 <Size X="94.0000" Y="46.0000" />
                 <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
-                <Position X="640.0000" Y="530.0000" />
+                <Position X="640.0000" Y="520.0000" />
                 <Scale ScaleX="1.0000" ScaleY="1.0000" />
                 <CColor A="255" R="165" G="42" B="42" />
-                <PrePosition X="0.5000" Y="0.7361" />
+                <PrePosition X="0.5000" Y="0.7222" />
                 <PreSize X="0.0734" Y="0.0639" />
                 <FontResource Type="Normal" Path="DFYuanW7-GB2312.ttf" Plist="" />
                 <OutlineColor A="255" R="255" G="0" B="0" />
