@@ -33,14 +33,18 @@ public:
     };
 public:
     CREATE_FUNC(AlertLayer)
+
     AlertLayer();
+
     ~AlertLayer();
+
 protected:
     virtual void initLayer();
     //设置回调
 public:
-    void setAlertType(AlertTypeEnum typeEnum, bool autoClose = true);//设置提示框类型
-    void setCallback(cocos2d::Node *okTarget, SEL_CallFuncN okSelector ,cocos2d::Node *cancelTarget = NULL, SEL_CallFuncN cancelSelector = NULL);
+    void setAlertType(AlertTypeEnum typeEnum, bool autoClose = true);    //设置提示框类型
+    void setText(std::string content ,std::string title = "提示");   //设置内容
+    void setCallback(cocos2d::Node *okTarget, SEL_CallFuncN okSelector, cocos2d::Node *cancelTarget = NULL, SEL_CallFuncN cancelSelector = NULL);   //设置回调
     virtual Node *GetLayer();   //获取Layer
 
 

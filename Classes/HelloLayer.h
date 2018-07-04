@@ -26,9 +26,11 @@ public:
 
 protected:
     virtual void onTouchEnded(ui::Widget *pWidget, const char *pName);  //按钮事件处理
-    virtual void initLayer();     //初始化层
+    virtual void initLayer();           //初始化层
 public:
-    virtual Node *GetLayer();     //获取层Layer
+    virtual Node *GetLayer();           //获取层Layer
+    void GoToGameLayer(Node* pNode);    //进入游戏层
+
 };
 
 

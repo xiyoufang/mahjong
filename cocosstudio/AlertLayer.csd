@@ -21,19 +21,6 @@
               </AbstractNodeData>
               <AbstractNodeData Name="ScrollView_Alert_Content" ActionTag="-1387019081" Tag="16" IconVisible="False" LeftMargin="220.0000" RightMargin="220.0000" TopMargin="220.0000" BottomMargin="200.0000" TouchEnable="True" ClipAble="False" BackColorAlpha="0" ComboBoxIndex="1" ColorAngle="90.0000" ScrollDirectionType="Vertical" ctype="ScrollViewObjectData">
                 <Size X="840.0000" Y="300.0000" />
-                <Children>
-                  <AbstractNodeData Name="Text_2" ActionTag="1191909085" Tag="19" IconVisible="False" LeftMargin="209.4869" RightMargin="512.5131" TopMargin="120.4692" BottomMargin="148.5308" FontSize="26" LabelText="Text Label" HorizontalAlignmentType="HT_Center" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="TextObjectData">
-                    <Size X="119.0000" Y="31.0000" />
-                    <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
-                    <Position X="268.9869" Y="164.0308" />
-                    <Scale ScaleX="1.0000" ScaleY="1.0000" />
-                    <CColor A="255" R="165" G="42" B="42" />
-                    <PrePosition X="0.3198" Y="0.5468" />
-                    <PreSize X="0.1415" Y="0.1033" />
-                    <OutlineColor A="255" R="255" G="0" B="0" />
-                    <ShadowColor A="255" R="110" G="110" B="110" />
-                  </AbstractNodeData>
-                </Children>
                 <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
                 <Position X="640.0000" Y="350.0000" />
                 <Scale ScaleX="1.0000" ScaleY="1.0000" />

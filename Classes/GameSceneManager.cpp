@@ -53,29 +53,62 @@ cocos2d::Size GameSceneManager::getVisibleSize() {
     return Director::getInstance()->getVisibleSize();
 }
 
+/**
+ * 提示框
+ * @param strContent
+ *  内容
+ * @param autoClose
+ *  点击""按钮是否自动
+ * @param keep
+ *  是否保持 之前的 提示框
+ * @param okTarget
+ *  OK回调对象
+ * @param okSelector
+ *  OK回调函数
+ *
+ */
 void GameSceneManager::alert(std::string strContent, bool autoClose, bool keep, Node *okTarget, SEL_CallFuncN okSelector) {
-    if (!keep){
+    if (!keep) {
         removeAlertTag();
     }
     AlertLayer *pAlertLayer = AlertLayer::create();
     pAlertLayer->setAlertType(AlertLayer::ENUM_ALERT, autoClose);
     pAlertLayer->setCallback(okTarget, okSelector);
+    pAlertLayer->setText(strContent);
     m_pRootLayer->addChild(pAlertLayer->GetLayer(), TAG_ALERT);
 }
 
+/**
+ * 确认框
+ * @param strContent
+ *  内容
+ * @param autoClose
+ *  点击""按钮是否自动
+ * @param keep
+ *  是否保持 之前的 提示框
+ * @param okTarget
+ *  OK回调对象
+ * @param okSelector
+ *  OK回调函数
+ * @param cancelTarget
+ *  取消回调对象
+ * @param cancelSelector
+ *  取消回调函数
+ */
 void GameSceneManager::confirm(std::string strContent, bool autoClose, bool keep, Node *okTarget, SEL_CallFuncN okSelector, Node *cancelTarget, SEL_CallFuncN cancelSelector) {
-    if (!keep){
+    if (!keep) {
         removeAlertTag();
     }
     AlertLayer *pAlertLayer = AlertLayer::create();
     pAlertLayer->setAlertType(AlertLayer::ENUM_CONFIRM, autoClose);
-    pAlertLayer->setCallback(okTarget, okSelector ,cancelTarget ,cancelSelector);
+    pAlertLayer->setCallback(okTarget, okSelector, cancelTarget, cancelSelector);
+    pAlertLayer->setText(strContent);
     m_pRootLayer->addChild(pAlertLayer->GetLayer(), TAG_ALERT);
 }
 
-void GameSceneManager::removeAlertTag(){
+void GameSceneManager::removeAlertTag() {
     Node *pNode = UIHelper::seekNodeByTag(m_pRootLayer, TAG_ALERT);
-    if (pNode != NULL){
+    if (pNode != NULL) {
         pNode->removeFromParent();
     }
 }
