@@ -4,6 +4,8 @@
 
 #include "HelloLayer.h"
 #include "GameSceneManager.h"
+#include "ViewControl.h"
+#include "ViewObject.h"
 
 HelloLayer::HelloLayer() {
     initLayer();
@@ -43,5 +45,7 @@ void HelloLayer::onTouchEnded(ui::Widget *pWidget, const char *pName) {
  */
 void HelloLayer::GoToGameLayer(Node *pNode) {
     cocos2d::log("进入游戏层");
+    ViewObject *pObject = ViewObject::create("", "GameView");
+    __NotificationCenter::getInstance()->postNotification(ccNd_ViewNotify, pObject);
 
 }

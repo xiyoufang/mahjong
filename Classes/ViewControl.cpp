@@ -43,6 +43,7 @@ void ViewControl::onViewNotify(Ref *render) {
     ViewObject *pObject = (ViewObject *) render;
     if (pObject->m_subString == "GameView"){    //切换到游戏视图
 
+
     }
 
 }
