@@ -14,7 +14,7 @@ AlertLayer::AlertLayer() {
 }
 
 AlertLayer::~AlertLayer() {
-
+    cocos2d::log("~AlertLayer");
 }
 
 Node *AlertLayer::GetLayer() {

@@ -101,7 +101,7 @@ bool AppDelegate::applicationDidFinishLaunching() {
     searchPath.push_back("res");
     cocos2d::FileUtils::getInstance()->setSearchPaths(searchPath);
     // create a scene. it's an autorelease object
-    ViewControl::create();
+    new ViewControl();
     return true;
 }
 

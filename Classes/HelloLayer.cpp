@@ -33,10 +33,11 @@ Node *HelloLayer::GetLayer() {
  */
 void HelloLayer::onTouchEnded(ui::Widget *pWidget, const char *pName) {
     cocos2d::log("控件:%s 触发onTouchEnded事件", pName);
-    GameSceneManager::getInstance()->alert("欢迎运行此游戏，此游戏是基于Cocos2d-X的开源单机麻将，"
+    GameSceneManager::getInstance()->alert("欢迎运行此游戏，此游戏是基于Cocos2d-X的开源单机麻将，\n"
+                                           "本游戏使用的资源全部收集自互联网，若侵犯了您的权益请联系我进行删除。\n"
                                            "希望此游戏源码可以帮助更多的人快速入门使用CPP开发Cocos2d-X，"
                                            "获取更多软件与游戏开发信息请关注我的博客：\n"
-                                           "https://www.xiyoufang.com", true, false, this, CC_CALLFUNCN_SELECTOR(HelloLayer::GoToGameLayer));
+                                           "https://www.xiyoufang.com", false, false, this, CC_CALLFUNCN_SELECTOR(HelloLayer::GoToGameLayer));
 }
 
 /**
@@ -45,7 +46,7 @@ void HelloLayer::onTouchEnded(ui::Widget *pWidget, const char *pName) {
  */
 void HelloLayer::GoToGameLayer(Node *pNode) {
     cocos2d::log("进入游戏层");
-    ViewObject *pObject = ViewObject::create("", "GameView");
+    ViewObject *pObject = ViewObject::create("GameLayer");
     __NotificationCenter::getInstance()->postNotification(ccNd_ViewNotify, pObject);
 
 }

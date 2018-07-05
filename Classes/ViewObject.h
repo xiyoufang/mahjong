@@ -9,6 +9,9 @@
 
 using namespace cocos2d;
 
+#define VIEW_SWITCH_MAIN_LAYER "SwitchMainLayer" //切换主界面
+
+
 /**
  * 视图控制用来传递的对象
  */
@@ -23,6 +26,17 @@ public:
     bool init();                //初始化
 
 public:
+
+    /**
+     * 创建
+     * @param mainString
+     *  主指令
+     * @param subString
+     *  子指令
+     * @return
+     */
+    static ViewObject *create(std::string subString);
+
     /**
      * 创建
      * @param mainString
@@ -32,6 +46,7 @@ public:
      * @return
      */
     static ViewObject *create(std::string mainString, std::string subString);
+
     /**
      * 创建
      * @param mainString
@@ -44,7 +59,7 @@ public:
      *  数据大小
      * @return
      */
-    static ViewObject *create(std::string mainString, std::string subString, void* pData, unsigned int iSize);
+    static ViewObject *create(std::string mainString, std::string subString, void *pData, unsigned int iSize);
 
     CREATE_FUNC(ViewObject);    //自动管理内存
 };

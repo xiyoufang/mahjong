@@ -7,27 +7,16 @@
 #include "HelloWorldScene.h"
 #include "GameSceneManager.h"
 #include "HelloLayer.h"
+#include "GameLayer.h"
 
 ViewControl::ViewControl() {
     auto scene = HelloWorld::createScene();
     GameSceneManager::getInstance()->setScene(scene);
     onViewNotify(NULL);
+    __NotificationCenter::getInstance()->addObserver(this, callfuncO_selector(ViewControl::onViewNotify), ccNd_ViewNotify, NULL);
 }
 
 ViewControl::~ViewControl() {
-
-}
-
-void ViewControl::onEnter() {
-    Node::onEnter();
-    //观察者模式，处理界面切换
-    __NotificationCenter::getInstance()->addObserver(this, callfuncO_selector(ViewControl::onViewNotify),
-                                                     ccNd_ViewNotify, NULL);
-
-}
-
-void ViewControl::onExit() {
-    Node::onExit();
     __NotificationCenter::getInstance()->removeAllObservers(this);
 }
 
@@ -41,9 +30,10 @@ void ViewControl::onViewNotify(Ref *render) {
         return;
     }
     ViewObject *pObject = (ViewObject *) render;
-    if (pObject->m_subString == "GameView"){    //切换到游戏视图
-
-
+    if (pObject->m_MainString == VIEW_SWITCH_MAIN_LAYER){
+        if (pObject->m_subString == "GameLayer"){    //切换到游戏视图
+            GameSceneManager::getInstance()->setRootLayer(GameLayer::create()->GetLayer());
+        }
     }
 
 }

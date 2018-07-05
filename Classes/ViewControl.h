@@ -20,16 +20,11 @@ public:
     ViewControl();
     ~ViewControl();
 
-    void onEnter() override;
-    void onExit() override;;
     /**
      * 通知到观察者
      * @param render
      */
     void onViewNotify(Ref* render);
-
-    //使用
-    CREATE_FUNC(ViewControl)
 
 };
 

@@ -193,7 +193,6 @@
             <Image Name="hand_top.png" />
           </Folder>
           <Image Name="b1.png" />
-          <Image Name="b2.png" />
           <Image Name="bg_center.png" />
           <Image Name="bg_game.jpg" />
           <Image Name="bt_exit.png" />
@@ -205,12 +204,19 @@
           <Image Name="flag_guo.png" />
           <Image Name="flag_hu.png" />
           <Image Name="flag_peng.png" />
+          <Image Name="im_defaulthead.png" />
+          <Image Name="im_defaulthead_0.png" />
+          <Image Name="im_defaulthead_1.png" />
+          <Image Name="im_defaultheadbg.png" />
+          <Image Name="im_ready.png" />
+          <Image Name="im_userscore.png" />
           <Image Name="img_banker.png" />
           <Image Name="img_sign.png" />
+          <Image Name="im_nohead.png" />
           <Image Name="time_bg.png" />
-          <Image Name="time2.png" />
           <Image Name="time0.png" />
           <Image Name="time1.png" />
+          <Image Name="time2.png" />
           <Image Name="time3.png" />
           <Image Name="timer_0.png" />
           <Image Name="timer_1.png" />
@@ -235,6 +241,7 @@
         <Project Name="HelloLayer.csd" Type="Layer" />
         <Image Name="HelloWorld.png" />
         <Project Name="MainScene.csd" Type="Scene" />
+        <TTF Name="num.ttf" />
       </RootFolder>
     </Group>
   </SolutionFolder>
