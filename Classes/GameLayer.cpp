@@ -11,7 +11,7 @@
 GameLayer::GameLayer() {
     m_CurPlayer = 0;
     m_MeChairID = 0;
-    m_GameEngine = new GameEngine;  //构造游戏引擎
+    m_GameEngine = GameEngine::GetGameEngine();  //构造游戏引擎
     m_GameLogic = new GameLogic;
     memset(&m_cbCardIndex, 0, sizeof(m_cbCardIndex));
     memset(&m_cbWeaveItemCount, 0, sizeof(m_cbWeaveItemCount));
@@ -20,6 +20,9 @@ GameLayer::GameLayer() {
     m_cbLeftCardCount = 0;
     m_cbBankerChair = INVALID_CHAIR;
     m_bOperate = false;
+    m_pOperateNotifyGroup = NULL;
+    m_pTextCardNum = NULL;
+    m_iOutCardTimeOut = 30;
     initLayer();
     schedule(CC_SCHEDULE_SELECTOR(GameLayer::aiEnterGame), 1.0f);    //创建个定时任务，用来添加机器人
 }
@@ -47,6 +50,8 @@ void GameLayer::initLayer() {
         m_FaceFrame[i] = UIHelper::seekNodeByName(m_pLayer, utility::toString("face_frame_", (int) i));
         m_PlayerPanel[i] = UIHelper::seekNodeByName(m_pLayer, utility::toString("PlayerPanel_", (int) i));
     }
+    m_pOperateNotifyGroup = UIHelper::seekNodeByName(m_pLayer, "OperateNotifyGroup");   //操作节点
+    m_pTextCardNum = dynamic_cast<ui::Text *>(UIHelper::seekNodeByName(m_pLayer, "Text_LeftCard"));   //操作节点
     setTouchEventListener(m_pLayer);
     RealPlayer *pIPlayer = new RealPlayer(IPlayer::MALE, this);
     m_GameEngine->onUserEnter(pIPlayer);    //玩家加入游戏
@@ -83,8 +88,9 @@ bool GameLayer::onGameStartEvent(CMD_S_GameStart GameStart) {
     //剩余的牌
     m_cbLeftCardCount = GameStart.cbLeftCardCount;
     m_cbBankerChair = GameStart.cbBankerUser;
-    m_GameLogic->switchToCardIndex(GameStart.cbCardData,MAX_COUNT-1,m_cbCardIndex[m_MeChairID]);
+    m_GameLogic->switchToCardIndex(GameStart.cbCardData, MAX_COUNT - 1, m_cbCardIndex[m_MeChairID]);
     //界面显示
+    m_pTextCardNum->setString(utility::toString((int) m_cbLeftCardCount));
     showAndUpdateHandCard();
     showAndUpdateDiscardCard();
     return true;
@@ -96,7 +102,123 @@ bool GameLayer::onGameStartEvent(CMD_S_GameStart GameStart) {
  * @return
  */
 bool GameLayer::onSendCardEvent(CMD_S_SendCard SendCard) {
-    //
+    m_iOutCardTimeOut = 30; //重置计时器
+    m_cbLeftCardCount--;
+    if (SendCard.cbCurrentUser == m_MeChairID) {
+        m_cbCardIndex[m_MeChairID][m_GameLogic->switchToCardIndex(SendCard.cbCardData)]++;
+    }
+    m_pOperateNotifyGroup->removeAllChildren();
+    m_pOperateNotifyGroup->setVisible(true);
+    this->unschedule(schedule_selector(GameLayer::sendCardTimerUpdate));
+    this->schedule(schedule_selector(GameLayer::sendCardTimerUpdate), 1.0f);    //出牌计时
+    sendCardTimerUpdate(1.0f);//立即执行
+    m_pTextCardNum->setString(utility::toString((int) m_cbLeftCardCount));
+    uint8_t cbViewID = switchViewChairID(SendCard.cbCurrentUser);
+    m_bOperate = false;
+    switch (cbViewID) {
+        case 0: {
+            m_bOperate = true;   //允许选牌
+            ui::Layout *pRecvCardList = dynamic_cast<ui::Layout *>(UIHelper::seekNodeByName(m_PlayerPanel[cbViewID], utility::toString("RecvHandCard_0")));
+            pRecvCardList->removeAllChildren();
+            ui::ImageView *pCard = createHandCardImageView(cbViewID, SendCard.cbCardData);
+            pCard->setAnchorPoint(Vec2(0, 0));
+            pCard->setPosition(Vec2(0, 0));
+            pCard->setTouchEnabled(true);
+            pCard->setTag(SendCard.cbCardData);
+            pCard->setName(utility::toString("bt_card_", (int) SendCard.cbCardData));
+            pCard->addTouchEventListener(CC_CALLBACK_2(GameLayer::onCardTouch, this));
+            pRecvCardList->addChild(pCard);
+            UIHelper::seekNodeByName(m_PlayerPanel[cbViewID], "ting_0")->setVisible(false); //拿到牌，隐藏听牌界面
+            //发的牌存在动作，模拟发送操作通知
+            if (SendCard.cbActionMask != WIK_NULL) {
+                CMD_S_OperateNotify OperateNotify;
+                memset(&OperateNotify, 0, sizeof(CMD_S_OperateNotify));
+                OperateNotify.cbActionMask = SendCard.cbActionMask;
+                OperateNotify.cbActionCard = SendCard.cbCardData;
+                OperateNotify.cbGangCount = SendCard.cbGangCount;
+                memcpy(OperateNotify.cbGangCard, SendCard.cbGangCard, sizeof(OperateNotify.cbGangCard));
+                showOperateNotify(OperateNotify);
+            }
+            break;
+        }
+        case 1:
+        case 2:
+        case 3:
+        default:
+            m_bOperate = false;  //不允许操作
+            break;
+    }
+    for (int i = 0; i < GAME_PLAYER; i++) {
+        ui::ImageView *pRecvCard = dynamic_cast<ui::ImageView *>(UIHelper::seekNodeByName(m_PlayerPanel[cbViewID], utility::toString("RecvCard_", i)));
+        if (pRecvCard) {
+            pRecvCard->setVisible(cbViewID == i);
+        }
+        ui::ImageView *pHighlight = dynamic_cast<ui::ImageView *>(UIHelper::seekNodeByName(m_pLayer, utility::toString("Image_Wheel_", i)));
+        if (pHighlight) {
+            pHighlight->setVisible(cbViewID == i);
+        }
+    }
+    return true;
+}
+
+void GameLayer::sendCardTimerUpdate(float f) {
+    m_iOutCardTimeOut = static_cast<uint8_t>((m_iOutCardTimeOut-- < 1) ? 0 : m_iOutCardTimeOut);
+    ui::ImageView *pTimer1 = dynamic_cast<ui::ImageView *>(UIHelper::seekNodeByName(m_pLayer, "Image_Timer_1"));
+    ui::ImageView *pTimer0 = dynamic_cast<ui::ImageView *>(UIHelper::seekNodeByName(m_pLayer, "Image_Timer_0"));
+    int t = m_iOutCardTimeOut / 10;   //十位
+    int g = m_iOutCardTimeOut % 10;   //各位
+    pTimer1->loadTexture(utility::toString("res/GameLayer/timer_" , g , ".png"));
+    pTimer0->loadTexture(utility::toString("res/GameLayer/timer_" , t , ".png"));
+}
+
+
+bool GameLayer::showOperateNotify(CMD_S_OperateNotify OperateNotify) {
+    if (OperateNotify.cbActionMask == WIK_NULL) {
+        return true; //无动作
+    }
+    m_pOperateNotifyGroup->removeAllChildren();
+    m_pOperateNotifyGroup->setVisible(true);
+    float x = 500.0f;
+    float y = 65.0f;
+    if ((OperateNotify.cbActionMask & WIK_H) != 0) {
+        Node *pHuNode = CSLoader::createNode("res/BtnHu.csb");
+        pHuNode->setPosition(Vec2(x, y));
+        ui::Button *pHuBtn = dynamic_cast<ui::Button *>(pHuNode->getChildren().at(0));
+        pHuBtn->setTag(OperateNotify.cbActionCard);
+        pHuBtn->addTouchEventListener(CC_CALLBACK_2(GameLayer::onOperateTouch, this));
+        m_pOperateNotifyGroup->addChild(pHuNode);
+        x -= 160;
+    }
+    if ((OperateNotify.cbActionMask & WIK_G) != 0) {
+        for (int i = 0; i < OperateNotify.cbGangCount; i++) {
+            Node *pGangNode = CSLoader::createNode("res/BtnGang.csb");
+            pGangNode->setPosition(Vec2(x, y + (i * 120)));
+            ui::Button *pGangBtn = dynamic_cast<ui::Button *>(pGangNode->getChildren().at(0));
+            ui::ImageView *pImgGangCard = dynamic_cast<ui::ImageView *>(UIHelper::seekNodeByName(pGangBtn, "ImgGangCard"));
+            pImgGangCard->loadTexture(getDiscardCardImagePath(0, OperateNotify.cbGangCard[i]));
+            pImgGangCard->setVisible(OperateNotify.cbGangCount > 1);
+            pGangBtn->setTag(OperateNotify.cbGangCard[i]);
+            pGangBtn->addTouchEventListener(CC_CALLBACK_2(GameLayer::onOperateTouch, this));
+            m_pOperateNotifyGroup->addChild(pGangNode);
+        }
+        x -= 160;
+    }
+    if ((OperateNotify.cbActionMask & WIK_P) != 0) {
+        Node *pPengNode = CSLoader::createNode("res/BtnPeng.csb");
+        pPengNode->setPosition(Vec2(x, y));
+        ui::Button *pPengBtn = dynamic_cast<ui::Button *>(pPengNode->getChildren().at(0));
+        pPengBtn->setTag(OperateNotify.cbActionCard);
+        pPengBtn->addTouchEventListener(CC_CALLBACK_2(GameLayer::onOperateTouch, this));
+        m_pOperateNotifyGroup->addChild(pPengNode);
+        x -= 160;
+    }
+    Node *pGuoNode = CSLoader::createNode("res/BtnGuo.csb");
+    pGuoNode->setPosition(Vec2(x, y));
+    ui::Button *pGuoBtn = dynamic_cast<ui::Button *>(pGuoNode->getChildren().at(0));
+    pGuoBtn->setTag(OperateNotify.cbActionCard);
+    pGuoBtn->addTouchEventListener(CC_CALLBACK_2(GameLayer::onOperateTouch, this));
+    m_pOperateNotifyGroup->addChild(pGuoNode);
+    return true;
 }
 
 /**
@@ -397,19 +519,23 @@ std::string GameLayer::getDiscardCardImagePath(uint8_t cbViewID, uint8_t cbData)
     std::string strImagePath = "";
     switch (cbViewID) {
         case 0: {
-            strImagePath = "res/GameLayer/Mahjong/2/mingmah_" + utility::toString(((cbData & MASK_COLOR) >> 4) + 1, cbData & MASK_VALUE) + ".png";
+            strImagePath = "res/GameLayer/Mahjong/2/mingmah_" + utility::toString(((cbData & MASK_COLOR)
+                    >> 4) + 1, cbData & MASK_VALUE) + ".png";
             break;
         }
         case 1: {
-            strImagePath = "res/GameLayer/Mahjong/3/mingmah_" + utility::toString(((cbData & MASK_COLOR) >> 4) + 1, cbData & MASK_VALUE) + ".png";
+            strImagePath = "res/GameLayer/Mahjong/3/mingmah_" + utility::toString(((cbData & MASK_COLOR)
+                    >> 4) + 1, cbData & MASK_VALUE) + ".png";
             break;
         }
         case 2: {
-            strImagePath = "res/GameLayer/Mahjong/2/mingmah_" + utility::toString(((cbData & MASK_COLOR) >> 4) + 1, cbData & MASK_VALUE) + ".png";
+            strImagePath = "res/GameLayer/Mahjong/2/mingmah_" + utility::toString(((cbData & MASK_COLOR)
+                    >> 4) + 1, cbData & MASK_VALUE) + ".png";
             break;
         }
         case 3: {
-            strImagePath = "res/GameLayer/Mahjong/1/mingmah_" + utility::toString(((cbData & MASK_COLOR) >> 4) + 1, cbData & MASK_VALUE) + ".png";
+            strImagePath = "res/GameLayer/Mahjong/1/mingmah_" + utility::toString(((cbData & MASK_COLOR)
+                    >> 4) + 1, cbData & MASK_VALUE) + ".png";
             break;
         }
         default:
@@ -482,7 +608,46 @@ std::string GameLayer::getHandCardImagePath(uint8_t cbViewID, uint8_t cbData) {
     return strImagePath;
 }
 
+void GameLayer::onOperateTouch(Ref *ref, ui::Widget::TouchEventType eventType) {
+    ui::Button *pRef = dynamic_cast<ui::Button *>(ref);
+    if (pRef != NULL) {
+        std::string btnName = pRef->getName();
+        int iTag = pRef->getTag();
+        switch (eventType) {
+            case ui::Widget::TouchEventType::ENDED:
+                CMD_C_OperateCard OperateCard;
+                memset(&OperateCard, 0, sizeof(CMD_C_OperateCard));
+                if (strcmp(btnName.c_str(), "btn_hu") == 0) {
+                    OperateCard.cbOperateCode = WIK_H;
+                    OperateCard.cbOperateCard = static_cast<uint8_t >(iTag);
+                }
+                if (strcmp(btnName.c_str(), "btn_gang") == 0) {
+                    OperateCard.cbOperateCode = WIK_G;
+                    OperateCard.cbOperateCard = static_cast<uint8_t>(iTag);
+                }
+                if (strcmp(btnName.c_str(), "btn_peng") == 0) {
+                    OperateCard.cbOperateCode = WIK_P;
+                    OperateCard.cbOperateCard = static_cast<uint8_t>(iTag);
+                }
+                if (strcmp(btnName.c_str(), "btn_guo") == 0) {
+                    OperateCard.cbOperateCode = WIK_NULL;
+                    OperateCard.cbOperateCard = static_cast<uint8_t>(iTag);
+                    m_pOperateNotifyGroup->removeAllChildren();
+                    m_pOperateNotifyGroup->setVisible(false);
+                }
+//              sendOperateResult(OperateCard);
+                break;
+            default:
+                break;
+        }
+    }
+}
 
+/**
+ * 出牌
+ * @param ref
+ * @param eventType
+ */
 void GameLayer::onCardTouch(Ref *ref, ui::Widget::TouchEventType eventType) {
 
 }

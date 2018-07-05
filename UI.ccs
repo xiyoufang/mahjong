@@ -208,11 +208,11 @@
           <Image Name="im_defaulthead_0.png" />
           <Image Name="im_defaulthead_1.png" />
           <Image Name="im_defaultheadbg.png" />
+          <Image Name="im_nohead.png" />
           <Image Name="im_ready.png" />
           <Image Name="im_userscore.png" />
           <Image Name="img_banker.png" />
           <Image Name="img_sign.png" />
-          <Image Name="im_nohead.png" />
           <Image Name="time_bg.png" />
           <Image Name="time0.png" />
           <Image Name="time1.png" />
@@ -242,6 +242,19 @@
         <Image Name="HelloWorld.png" />
         <Project Name="MainScene.csd" Type="Scene" />
         <TTF Name="num.ttf" />
+        <Project Name="BtnGang.csd" Type="Node" />
+        <Project Name="BtnGuo.csd" Type="Node" />
+        <Project Name="BtnHu.csd" Type="Node" />
+        <Project Name="BtnPeng.csd" Type="Node" />
+        <Project Name="EffectGang.csd" Type="Node" />
+        <Project Name="EffectHu.csd" Type="Node" />
+        <Project Name="EffectPeng.csd" Type="Node" />
+        <Project Name="EffectZm.csd" Type="Node" />
+        <Project Name="Gang0.csd" Type="Node" />
+        <Project Name="Gang1.csd" Type="Node" />
+        <Project Name="Peng0.csd" Type="Node" />
+        <Project Name="Peng1.csd" Type="Node" />
+        <Project Name="SignAnim.csd" Type="Node" />
       </RootFolder>
     </Group>
   </SolutionFolder>

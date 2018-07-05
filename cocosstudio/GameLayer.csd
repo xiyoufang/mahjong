@@ -32,7 +32,7 @@
               <AbstractNodeData Name="Image_Wheel" ActionTag="1222031897" Tag="139" IconVisible="False" LeftMargin="574.0000" RightMargin="574.0000" TopMargin="294.5000" BottomMargin="294.5000" LeftEage="43" RightEage="43" TopEage="43" BottomEage="43" Scale9OriginX="43" Scale9OriginY="43" Scale9Width="46" Scale9Height="45" ctype="ImageViewObjectData">
                 <Size X="132.0000" Y="131.0000" />
                 <Children>
-                  <AbstractNodeData Name="Image_Wheel_0" ActionTag="-450023476" Tag="140" IconVisible="False" LeftMargin="-123.0000" RightMargin="-171.0000" TopMargin="93.5000" BottomMargin="-165.5000" LeftEage="167" RightEage="167" TopEage="66" BottomEage="66" Scale9OriginX="167" Scale9OriginY="66" Scale9Width="92" Scale9Height="71" ctype="ImageViewObjectData">
+                  <AbstractNodeData Name="Image_Wheel_0" ActionTag="-450023476" VisibleForFrame="False" Tag="140" IconVisible="False" LeftMargin="-123.0000" RightMargin="-171.0000" TopMargin="93.5000" BottomMargin="-165.5000" LeftEage="167" RightEage="167" TopEage="66" BottomEage="66" Scale9OriginX="167" Scale9OriginY="66" Scale9Width="92" Scale9Height="71" ctype="ImageViewObjectData">
                     <Size X="426.0000" Y="203.0000" />
                     <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
                     <Position X="90.0000" Y="-64.0000" />
@@ -127,17 +127,17 @@
                 <OutlineColor A="255" R="255" G="0" B="0" />
                 <ShadowColor A="255" R="110" G="110" B="110" />
               </AbstractNodeData>
-              <AbstractNodeData Name="Image_LastCard" ActionTag="-831784512" Tag="26" IconVisible="False" LeftMargin="719.5000" RightMargin="399.5000" TopMargin="339.5000" BottomMargin="339.5000" LeftEage="53" RightEage="53" TopEage="13" BottomEage="13" Scale9OriginX="53" Scale9OriginY="13" Scale9Width="55" Scale9Height="15" ctype="ImageViewObjectData">
+              <AbstractNodeData Name="Image_LeftCard" ActionTag="-831784512" Tag="26" IconVisible="False" LeftMargin="719.5000" RightMargin="399.5000" TopMargin="339.5000" BottomMargin="339.5000" LeftEage="53" RightEage="53" TopEage="13" BottomEage="13" Scale9OriginX="53" Scale9OriginY="13" Scale9Width="55" Scale9Height="15" ctype="ImageViewObjectData">
                 <Size X="161.0000" Y="41.0000" />
                 <Children>
-                  <AbstractNodeData Name="Text_lastCard" ActionTag="692263978" Tag="27" IconVisible="False" LeftMargin="79.0000" RightMargin="52.0000" TopMargin="9.0000" BottomMargin="8.0000" FontSize="24" LabelText="80" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="TextObjectData">
-                    <Size X="30.0000" Y="24.0000" />
+                  <AbstractNodeData Name="Text_LeftCard" ActionTag="692263978" Tag="27" IconVisible="False" LeftMargin="94.0000" RightMargin="67.0000" TopMargin="21.0000" BottomMargin="20.0000" FontSize="24" LabelText="" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="TextObjectData">
+                    <Size X="0.0000" Y="0.0000" />
                     <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
                     <Position X="94.0000" Y="20.0000" />
                     <Scale ScaleX="1.0000" ScaleY="1.0000" />
                     <CColor A="255" R="255" G="255" B="255" />
                     <PrePosition X="0.5839" Y="0.4878" />
-                    <PreSize X="0.1863" Y="0.5854" />
+                    <PreSize X="0.0000" Y="0.0000" />
                     <FontResource Type="Normal" Path="num.ttf" Plist="" />
                     <OutlineColor A="255" R="255" G="0" B="0" />
                     <ShadowColor A="255" R="110" G="110" B="110" />
@@ -285,7 +285,7 @@
                     <EndColor A="255" R="255" G="255" B="255" />
                     <ColorVector ScaleY="1.0000" />
                   </AbstractNodeData>
-                  <AbstractNodeData Name="RecvHandCard_0" ActionTag="1910453488" VisibleForFrame="False" Tag="89" IconVisible="False" LeftMargin="1162.0000" RightMargin="39.0000" TopMargin="30.0000" BottomMargin="10.0000" LeftEage="26" RightEage="26" TopEage="39" BottomEage="39" Scale9OriginX="26" Scale9OriginY="39" Scale9Width="27" Scale9Height="42" ctype="ImageViewObjectData">
+                  <AbstractNodeData Name="RecvHandCard_0" ActionTag="-874831694" Tag="223" IconVisible="False" LeftMargin="1162.0000" RightMargin="39.0000" TopMargin="30.0000" BottomMargin="10.0000" TouchEnable="True" ClipAble="False" BackColorAlpha="102" ColorAngle="90.0000" Scale9Width="1" Scale9Height="1" ctype="PanelObjectData">
                     <Size X="79.0000" Y="120.0000" />
                     <AnchorPoint />
                     <Position X="1162.0000" Y="10.0000" />
@@ -293,7 +293,10 @@
                     <CColor A="255" R="255" G="255" B="255" />
                     <PrePosition X="0.9078" Y="0.0625" />
                     <PreSize X="0.0617" Y="0.7500" />
-                    <FileData Type="Normal" Path="GameLayer/Mahjong/hand_top.png" Plist="" />
+                    <SingleColor A="255" R="150" G="200" B="255" />
+                    <FirstColor A="255" R="150" G="200" B="255" />
+                    <EndColor A="255" R="255" G="255" B="255" />
+                    <ColorVector ScaleY="1.0000" />
                   </AbstractNodeData>
                 </Children>
                 <AnchorPoint />
@@ -336,13 +339,13 @@
                     <EndColor A="255" R="255" G="255" B="255" />
                     <ColorVector ScaleY="1.0000" />
                   </AbstractNodeData>
-                  <AbstractNodeData Name="RecvCard_1" ActionTag="-1041747833" VisibleForFrame="False" Tag="85" IconVisible="False" RightMargin="30.0000" TopMargin="580.0000" BottomMargin="-10.0000" LeftEage="16" RightEage="16" TopEage="39" BottomEage="39" Scale9OriginX="16" Scale9OriginY="39" Scale9Width="18" Scale9Height="42" ctype="ImageViewObjectData">
+                  <AbstractNodeData Name="RecvCard_1" ActionTag="-1041747833" VisibleForFrame="False" Tag="85" IconVisible="False" RightMargin="30.0000" TopMargin="570.0000" LeftEage="16" RightEage="16" TopEage="39" BottomEage="39" Scale9OriginX="16" Scale9OriginY="39" Scale9Width="18" Scale9Height="42" ctype="ImageViewObjectData">
                     <Size X="50.0000" Y="120.0000" />
                     <AnchorPoint ScaleY="0.5000" />
-                    <Position Y="50.0000" />
-                    <Scale ScaleX="1.0000" ScaleY="1.0000" />
+                    <Position Y="60.0000" />
+                    <Scale ScaleX="0.8000" ScaleY="0.8000" />
                     <CColor A="255" R="255" G="255" B="255" />
-                    <PrePosition Y="0.0725" />
+                    <PrePosition Y="0.0870" />
                     <PreSize X="0.6250" Y="0.1739" />
                     <FileData Type="Normal" Path="GameLayer/Mahjong/hand_left.png" Plist="" />
                   </AbstractNodeData>
@@ -442,7 +445,7 @@
                     <Size X="50.0000" Y="120.0000" />
                     <AnchorPoint />
                     <Position Y="580.0000" />
-                    <Scale ScaleX="1.0000" ScaleY="1.0000" />
+                    <Scale ScaleX="0.8000" ScaleY="0.8000" />
                     <CColor A="255" R="255" G="255" B="255" />
                     <PrePosition Y="0.8406" />
                     <PreSize X="0.6250" Y="0.1739" />
@@ -455,6 +458,19 @@
                 <CColor A="255" R="255" G="255" B="255" />
                 <PrePosition X="0.8672" Y="0.1736" />
                 <PreSize X="0.0625" Y="0.9583" />
+                <SingleColor A="255" R="150" G="200" B="255" />
+                <FirstColor A="255" R="150" G="200" B="255" />
+                <EndColor A="255" R="255" G="255" B="255" />
+                <ColorVector ScaleY="1.0000" />
+              </AbstractNodeData>
+              <AbstractNodeData Name="OperateNotifyGroup" ActionTag="-122406775" VisibleForFrame="False" Tag="74" IconVisible="False" LeftMargin="400.0000" RightMargin="305.0000" TopMargin="420.0000" BottomMargin="160.0000" TouchEnable="True" ClipAble="False" BackColorAlpha="102" ColorAngle="90.0000" Scale9Width="1" Scale9Height="1" ctype="PanelObjectData">
+                <Size X="575.0000" Y="140.0000" />
+                <AnchorPoint />
+                <Position X="400.0000" Y="160.0000" />
+                <Scale ScaleX="1.0000" ScaleY="1.0000" />
+                <CColor A="255" R="255" G="255" B="255" />
+                <PrePosition X="0.3125" Y="0.2222" />
+                <PreSize X="0.4492" Y="0.1944" />
                 <SingleColor A="255" R="150" G="200" B="255" />
                 <FirstColor A="255" R="150" G="200" B="255" />
                 <EndColor A="255" R="255" G="255" B="255" />

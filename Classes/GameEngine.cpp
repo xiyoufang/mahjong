@@ -5,6 +5,20 @@
 #include "GameEngine.h"
 #include "IPlayer.h"
 
+
+static GameEngine *pGameEngine = NULL;
+
+/**
+ * 单例
+ * @return
+ */
+GameEngine *GameEngine::GetGameEngine() {
+    if (pGameEngine == NULL) {
+        pGameEngine = new GameEngine;
+    }
+    return pGameEngine;
+}
+
 GameEngine::GameEngine() {
     m_CurrChair = 0;
     m_GameLogic = new GameLogic;
@@ -24,6 +38,7 @@ void GameEngine::init() {
     m_cbProvideCard = 0;
     m_cbSendCardCount = 0;
     m_cbSendCardData = 0;
+    m_cbMa = 0;
     memset(m_cbGangCard, 0, sizeof(m_cbGangCard));                                    //重置杠的牌
     memset(m_llHuRight, 0, sizeof(m_llHuRight));                                      //清空胡牌类型
     memset(m_cbHuKind, 0, sizeof(m_cbHuKind));                                        //清空胡牌方式
@@ -135,7 +150,7 @@ bool GameEngine::dispatchCardData(uint8_t cbCurrentUser, bool bTail) {
     if (m_cbLeftCardCount == m_cbMa) {                                                //没牌发了,荒庄结束
         m_cbHuCard = 0;
         m_cbProvideUser = INVALID_CHAIR;
-        OnEventGameConclude(INVALID_CHAIR);                                     //流局
+        onEventGameConclude(INVALID_CHAIR);                                     //流局
         return true;
     }
     m_cbSendCardCount++;                                                              //发牌数据计数
@@ -181,6 +196,6 @@ bool GameEngine::dispatchCardData(uint8_t cbCurrentUser, bool bTail) {
  * 游戏结束
  * @param cbChairID
  */
-void GameEngine::OnEventGameConclude(uint8_t cbChairID) {
+void GameEngine::onEventGameConclude(uint8_t cbChairID) {
 
 }

@@ -88,10 +88,12 @@ public:
 public:
     void init();    //初始化数据
     void onGameStart();     //开始游戏
-    void OnEventGameConclude(uint8_t cbChairID); //结束游戏
+    void onEventGameConclude(uint8_t cbChairID); //结束游戏
     bool onUserEnter(IPlayer *pIPlayer);    //玩家进入
     bool dispatchCardData(uint8_t cbCurrentUser, bool bTail = false);    //发牌
 
+public:
+    static GameEngine* GetGameEngine();  //获取单例
 };
 
 
