@@ -4,6 +4,12 @@
 
 #include "RealPlayer.h"
 
-RealPlayer::RealPlayer(IGameEngineEventListener* pGameEngineEventListener) : IPlayer(false,pGameEngineEventListener) {
+/**
+ * 真实玩家
+ * @param sex
+ * @param pGameEngineEventListener
+ */
+RealPlayer::RealPlayer(PlayerSex sex, IGameEngineEventListener *pGameEngineEventListener)
+        : IPlayer(false, sex, pGameEngineEventListener) {
 
 }

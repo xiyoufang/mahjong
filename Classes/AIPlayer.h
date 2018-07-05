@@ -10,7 +10,7 @@
 class AIPlayer : public IPlayer{
 
 public:
-    AIPlayer(IGameEngineEventListener* pGameEngineEventListener);
+    AIPlayer(PlayerSex sex ,IGameEngineEventListener* pGameEngineEventListener);
 
 };
 

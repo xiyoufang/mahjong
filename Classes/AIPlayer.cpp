@@ -5,7 +5,13 @@
 #include "AIPlayer.h"
 
 
-AIPlayer::AIPlayer(IGameEngineEventListener *pGameEngineEventListener) : IPlayer(true, pGameEngineEventListener) {
+/**
+ * AI玩家
+ * @param sex
+ * @param pGameEngineEventListener
+ */
+AIPlayer::AIPlayer(PlayerSex sex, IGameEngineEventListener *pGameEngineEventListener)
+        : IPlayer(true, sex, pGameEngineEventListener) {
 
 
 }

@@ -166,7 +166,7 @@
           <AbstractNodeData Name="Panel_Game" ActionTag="466499212" Tag="26" IconVisible="False" ClipAble="False" BackColorAlpha="102" ColorAngle="90.0000" Scale9Width="1" Scale9Height="1" ctype="PanelObjectData">
             <Size X="1280.0000" Y="720.0000" />
             <Children>
-              <AbstractNodeData Name="DiscardCard_0" ActionTag="1530768108" Tag="64" IconVisible="False" LeftMargin="320.0000" RightMargin="320.0000" TopMargin="433.0000" BottomMargin="143.0000" ClipAble="False" BackColorAlpha="102" ColorAngle="90.0000" ctype="PanelObjectData">
+              <AbstractNodeData Name="DiscardCard_0" ActionTag="1530768108" Tag="64" IconVisible="False" LeftMargin="320.0000" RightMargin="320.0000" TopMargin="433.0000" BottomMargin="143.0000" ClipAble="False" BackColorAlpha="102" ColorAngle="90.0000" Scale9Width="1" Scale9Height="1" ctype="PanelObjectData">
                 <Size X="640.0000" Y="144.0000" />
                 <AnchorPoint />
                 <Position X="320.0000" Y="143.0000" />
@@ -218,10 +218,10 @@
                 <EndColor A="255" R="255" G="255" B="255" />
                 <ColorVector ScaleY="1.0000" />
               </AbstractNodeData>
-              <AbstractNodeData Name="PlyaerPanel_0" ActionTag="547219578" Tag="68" IconVisible="False" TopMargin="560.0000" ClipAble="False" BackColorAlpha="102" ColorAngle="90.0000" ctype="PanelObjectData">
+              <AbstractNodeData Name="PlayerPanel_0" ActionTag="547219578" Tag="68" IconVisible="False" TopMargin="560.0000" ClipAble="False" BackColorAlpha="102" ColorAngle="90.0000" Scale9Width="1" Scale9Height="1" ctype="PanelObjectData">
                 <Size X="1280.0000" Y="160.0000" />
                 <Children>
-                  <AbstractNodeData Name="ting_0" ActionTag="1617944031" VisibleForFrame="False" Tag="78" IconVisible="False" LeftMargin="5.0000" RightMargin="1047.0000" TopMargin="-18.0000" BottomMargin="60.0000" ClipAble="False" BackColorAlpha="102" ColorAngle="90.0000" ctype="PanelObjectData">
+                  <AbstractNodeData Name="ting_0" ActionTag="1617944031" VisibleForFrame="False" Tag="78" IconVisible="False" LeftMargin="5.0000" RightMargin="1047.0000" TopMargin="-18.0000" BottomMargin="60.0000" ClipAble="False" BackColorAlpha="102" ColorAngle="90.0000" Scale9Width="1" Scale9Height="1" ctype="PanelObjectData">
                     <Size X="228.0000" Y="118.0000" />
                     <Children>
                       <AbstractNodeData Name="Image_18" ActionTag="1259468418" Tag="79" IconVisible="False" TopMargin="-90.0000" BottomMargin="132.0000" LeftEage="75" RightEage="75" TopEage="25" BottomEage="25" Scale9OriginX="75" Scale9OriginY="25" Scale9Width="78" Scale9Height="26" ctype="ImageViewObjectData">
@@ -234,7 +234,7 @@
                         <PreSize X="1.0000" Y="0.6441" />
                         <FileData Type="Normal" Path="GameLayer/tingbg.png" Plist="" />
                       </AbstractNodeData>
-                      <AbstractNodeData Name="ting_card" ActionTag="-974864426" Tag="80" IconVisible="False" TouchEnable="True" ClipAble="False" BackColorAlpha="102" ColorAngle="90.0000" ctype="PanelObjectData">
+                      <AbstractNodeData Name="ting_card" ActionTag="-974864426" Tag="80" IconVisible="False" TouchEnable="True" ClipAble="False" BackColorAlpha="102" ColorAngle="90.0000" Scale9Width="1" Scale9Height="1" ctype="PanelObjectData">
                         <Size X="228.0000" Y="118.0000" />
                         <AnchorPoint />
                         <Position />
@@ -259,7 +259,7 @@
                     <EndColor A="255" R="255" G="255" B="255" />
                     <ColorVector ScaleY="1.0000" />
                   </AbstractNodeData>
-                  <AbstractNodeData Name="comb_0" ActionTag="899620348" Tag="75" IconVisible="False" LeftMargin="120.0000" RightMargin="170.0000" TopMargin="32.0000" BottomMargin="10.0000" ClipAble="False" BackColorAlpha="102" ColorAngle="90.0000" ctype="PanelObjectData">
+                  <AbstractNodeData Name="comb_0" ActionTag="899620348" Tag="75" IconVisible="False" LeftMargin="120.0000" RightMargin="170.0000" TopMargin="32.0000" BottomMargin="10.0000" ClipAble="False" BackColorAlpha="102" ColorAngle="90.0000" Scale9Width="1" Scale9Height="1" ctype="PanelObjectData">
                     <Size X="990.0000" Y="118.0000" />
                     <AnchorPoint />
                     <Position X="120.0000" Y="10.0000" />
@@ -272,7 +272,7 @@
                     <EndColor A="255" R="255" G="255" B="255" />
                     <ColorVector ScaleY="1.0000" />
                   </AbstractNodeData>
-                  <AbstractNodeData Name="HandCard_0" ActionTag="-778824229" Tag="76" IconVisible="False" LeftMargin="120.0000" RightMargin="170.0000" TopMargin="32.0000" BottomMargin="10.0000" TouchEnable="True" ClipAble="False" BackColorAlpha="102" ColorAngle="90.0000" ctype="PanelObjectData">
+                  <AbstractNodeData Name="HandCard_0" ActionTag="-778824229" Tag="76" IconVisible="False" LeftMargin="120.0000" RightMargin="170.0000" TopMargin="32.0000" BottomMargin="10.0000" TouchEnable="True" ClipAble="False" BackColorAlpha="102" ColorAngle="90.0000" Scale9Width="1" Scale9Height="1" ctype="PanelObjectData">
                     <Size X="990.0000" Y="118.0000" />
                     <AnchorPoint />
                     <Position X="120.0000" Y="10.0000" />
@@ -307,10 +307,10 @@
                 <EndColor A="255" R="255" G="255" B="255" />
                 <ColorVector ScaleY="1.0000" />
               </AbstractNodeData>
-              <AbstractNodeData Name="PlyaerPanel_1" ActionTag="947865405" Tag="69" IconVisible="False" LeftMargin="140.0000" RightMargin="1060.0000" TopMargin="-95.0000" BottomMargin="125.0000" ClipAble="False" BackColorAlpha="102" ColorAngle="90.0000" Scale9Width="1" Scale9Height="1" ctype="PanelObjectData">
+              <AbstractNodeData Name="PlayerPanel_1" ActionTag="947865405" Tag="69" IconVisible="False" LeftMargin="140.0000" RightMargin="1060.0000" TopMargin="-95.0000" BottomMargin="125.0000" ClipAble="False" BackColorAlpha="102" ColorAngle="90.0000" Scale9Width="1" Scale9Height="1" ctype="PanelObjectData">
                 <Size X="80.0000" Y="690.0000" />
                 <Children>
-                  <AbstractNodeData Name="comb_1" ActionTag="-1752245552" Tag="72" IconVisible="False" RightMargin="-38.0000" TopMargin="-270.0000" BottomMargin="160.0000" ClipAble="False" BackColorAlpha="102" ColorAngle="90.0000" ctype="PanelObjectData">
+                  <AbstractNodeData Name="comb_1" ActionTag="-1752245552" Tag="72" IconVisible="False" RightMargin="-38.0000" TopMargin="-270.0000" BottomMargin="160.0000" ClipAble="False" BackColorAlpha="102" ColorAngle="90.0000" Scale9Width="1" Scale9Height="1" ctype="PanelObjectData">
                     <Size X="118.0000" Y="800.0000" />
                     <AnchorPoint />
                     <Position Y="160.0000" />
@@ -323,7 +323,7 @@
                     <EndColor A="255" R="255" G="255" B="255" />
                     <ColorVector ScaleY="1.0000" />
                   </AbstractNodeData>
-                  <AbstractNodeData Name="HandCard_1" ActionTag="-789879941" Tag="73" IconVisible="False" TopMargin="-250.0000" BottomMargin="140.0000" ClipAble="False" BackColorAlpha="102" ColorAngle="90.0000" ctype="PanelObjectData">
+                  <AbstractNodeData Name="HandCard_1" ActionTag="-789879941" Tag="73" IconVisible="False" TopMargin="-250.0000" BottomMargin="140.0000" ClipAble="False" BackColorAlpha="102" ColorAngle="90.0000" Scale9Width="1" Scale9Height="1" ctype="PanelObjectData">
                     <Size X="80.0000" Y="800.0000" />
                     <AnchorPoint />
                     <Position Y="140.0000" />
@@ -358,10 +358,10 @@
                 <EndColor A="255" R="255" G="255" B="255" />
                 <ColorVector ScaleY="1.0000" />
               </AbstractNodeData>
-              <AbstractNodeData Name="PlyaerPanel_2" ActionTag="-1830025265" Tag="70" IconVisible="False" LeftMargin="160.0000" RightMargin="-92.0000" TopMargin="-20.0000" BottomMargin="572.0000" ClipAble="False" BackColorAlpha="102" ColorAngle="90.0000" Scale9Width="1" Scale9Height="1" ctype="PanelObjectData">
+              <AbstractNodeData Name="PlayerPanel_2" ActionTag="-1830025265" Tag="70" IconVisible="False" LeftMargin="160.0000" RightMargin="-92.0000" TopMargin="-20.0000" BottomMargin="572.0000" ClipAble="False" BackColorAlpha="102" ColorAngle="90.0000" Scale9Width="1" Scale9Height="1" ctype="PanelObjectData">
                 <Size X="1212.0000" Y="168.0000" />
                 <Children>
-                  <AbstractNodeData Name="comb_2" ActionTag="-651788802" Tag="81" IconVisible="False" LeftMargin="172.0000" RightMargin="13.0000" TopMargin="20.0000" BottomMargin="30.0000" ClipAble="False" BackColorAlpha="102" ColorAngle="90.0000" ctype="PanelObjectData">
+                  <AbstractNodeData Name="comb_2" ActionTag="-651788802" Tag="81" IconVisible="False" LeftMargin="172.0000" RightMargin="13.0000" TopMargin="20.0000" BottomMargin="30.0000" ClipAble="False" BackColorAlpha="102" ColorAngle="90.0000" Scale9Width="1" Scale9Height="1" ctype="PanelObjectData">
                     <Size X="1027.0000" Y="118.0000" />
                     <AnchorPoint />
                     <Position X="172.0000" Y="30.0000" />
@@ -374,7 +374,7 @@
                     <EndColor A="255" R="255" G="255" B="255" />
                     <ColorVector ScaleY="1.0000" />
                   </AbstractNodeData>
-                  <AbstractNodeData Name="HandCard_2" ActionTag="1986081018" Tag="82" IconVisible="False" LeftMargin="174.0000" RightMargin="11.0000" TopMargin="20.0000" BottomMargin="30.0000" ClipAble="False" BackColorAlpha="102" ColorAngle="90.0000" ctype="PanelObjectData">
+                  <AbstractNodeData Name="HandCard_2" ActionTag="1986081018" Tag="82" IconVisible="False" LeftMargin="174.0000" RightMargin="11.0000" TopMargin="20.0000" BottomMargin="30.0000" ClipAble="False" BackColorAlpha="102" ColorAngle="90.0000" Scale9Width="1" Scale9Height="1" ctype="PanelObjectData">
                     <Size X="1027.0000" Y="118.0000" />
                     <AnchorPoint />
                     <Position X="174.0000" Y="30.0000" />
@@ -409,10 +409,10 @@
                 <EndColor A="255" R="255" G="255" B="255" />
                 <ColorVector ScaleY="1.0000" />
               </AbstractNodeData>
-              <AbstractNodeData Name="PlyaerPanel_3" ActionTag="643150025" Tag="71" IconVisible="False" LeftMargin="1110.0000" RightMargin="90.0000" TopMargin="-95.0000" BottomMargin="125.0000" ClipAble="False" BackColorAlpha="102" ColorAngle="90.0000" Scale9Width="1" Scale9Height="1" ctype="PanelObjectData">
+              <AbstractNodeData Name="PlayerPanel_3" ActionTag="643150025" Tag="71" IconVisible="False" LeftMargin="1110.0000" RightMargin="90.0000" TopMargin="-95.0000" BottomMargin="125.0000" ClipAble="False" BackColorAlpha="102" ColorAngle="90.0000" Scale9Width="1" Scale9Height="1" ctype="PanelObjectData">
                 <Size X="80.0000" Y="690.0000" />
                 <Children>
-                  <AbstractNodeData Name="HandCard_3" ActionTag="1293387174" Tag="86" IconVisible="False" TopMargin="-210.0000" BottomMargin="100.0000" ClipAble="False" BackColorAlpha="102" ColorAngle="90.0000" ctype="PanelObjectData">
+                  <AbstractNodeData Name="HandCard_3" ActionTag="1293387174" Tag="86" IconVisible="False" TopMargin="-210.0000" BottomMargin="100.0000" ClipAble="False" BackColorAlpha="102" ColorAngle="90.0000" Scale9Width="1" Scale9Height="1" ctype="PanelObjectData">
                     <Size X="80.0000" Y="800.0000" />
                     <AnchorPoint />
                     <Position Y="100.0000" />
@@ -425,7 +425,7 @@
                     <EndColor A="255" R="255" G="255" B="255" />
                     <ColorVector ScaleY="1.0000" />
                   </AbstractNodeData>
-                  <AbstractNodeData Name="comb_3" ActionTag="-512346350" Tag="87" IconVisible="False" LeftMargin="-12.0000" RightMargin="-26.0000" TopMargin="-190.0000" BottomMargin="80.0000" ClipAble="False" BackColorAlpha="102" ColorAngle="90.0000" ctype="PanelObjectData">
+                  <AbstractNodeData Name="comb_3" ActionTag="-512346350" Tag="87" IconVisible="False" LeftMargin="-12.0000" RightMargin="-26.0000" TopMargin="-190.0000" BottomMargin="80.0000" ClipAble="False" BackColorAlpha="102" ColorAngle="90.0000" Scale9Width="1" Scale9Height="1" ctype="PanelObjectData">
                     <Size X="118.0000" Y="800.0000" />
                     <AnchorPoint />
                     <Position X="-12.0000" Y="80.0000" />

@@ -9,7 +9,7 @@
 
 class RealPlayer : public IPlayer {
 public:
-    RealPlayer(IGameEngineEventListener* pGameEngineEventListener);
+    RealPlayer(PlayerSex sex ,IGameEngineEventListener* pGameEngineEventListener);
 };
 
 
