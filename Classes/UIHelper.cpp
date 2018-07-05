@@ -5,26 +5,20 @@
 #include "UIHelper.h"
 
 
-Node* UIHelper::seekNodeByTag(Node* root, int tag)
-{
-    if (!root)
-    {
+Node *UIHelper::seekNodeByTag(Node *root, int tag) {
+    if (!root) {
         return nullptr;
     }
-    if (root->getTag() == tag)
-    {
+    if (root->getTag() == tag) {
         return root;
     }
-    const auto& arrayRootChildren = root->getChildren();
+    const auto &arrayRootChildren = root->getChildren();
     ssize_t length = arrayRootChildren.size();
-    for (ssize_t i=0;i<length;i++)
-    {
-        Node* child = dynamic_cast<Node*>(arrayRootChildren.at(i));
-        if (child)
-        {
-            Node* res = seekNodeByTag(child,tag);
-            if (res != nullptr)
-            {
+    for (ssize_t i = 0; i < length; i++) {
+        Node *child = dynamic_cast<Node *>(arrayRootChildren.at(i));
+        if (child) {
+            Node *res = seekNodeByTag(child, tag);
+            if (res != nullptr) {
                 return res;
             }
         }
@@ -32,25 +26,19 @@ Node* UIHelper::seekNodeByTag(Node* root, int tag)
     return nullptr;
 }
 
-Node* UIHelper::seekNodeByName(Node* root, const std::string& name)
-{
-    if (!root)
-    {
+Node *UIHelper::seekNodeByName(Node *root, const std::string &name) {
+    if (!root) {
         return nullptr;
     }
-    if (root->getName() == name)
-    {
+    if (root->getName() == name) {
         return root;
     }
-    const auto& arrayRootChildren = root->getChildren();
-    for (auto& subWidget : arrayRootChildren)
-    {
-        Node* child = dynamic_cast<Node*>(subWidget);
-        if (child)
-        {
-            Node* res = seekNodeByName(child,name);
-            if (res != nullptr)
-            {
+    const auto &arrayRootChildren = root->getChildren();
+    for (auto &subWidget : arrayRootChildren) {
+        Node *child = dynamic_cast<Node *>(subWidget);
+        if (child) {
+            Node *res = seekNodeByName(child, name);
+            if (res != nullptr) {
                 return res;
             }
         }

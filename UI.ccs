@@ -236,22 +236,22 @@
           <Image Name="im_logo.png" />
         </Folder>
         <Project Name="AlertLayer.csd" Type="Layer" />
-        <TTF Name="DFYuanW7-GB2312.ttf" />
-        <Project Name="GameLayer.csd" Type="Layer" />
-        <Project Name="HelloLayer.csd" Type="Layer" />
-        <Image Name="HelloWorld.png" />
-        <Project Name="MainScene.csd" Type="Scene" />
-        <TTF Name="num.ttf" />
         <Project Name="BtnGang.csd" Type="Node" />
         <Project Name="BtnGuo.csd" Type="Node" />
         <Project Name="BtnHu.csd" Type="Node" />
         <Project Name="BtnPeng.csd" Type="Node" />
+        <TTF Name="DFYuanW7-GB2312.ttf" />
         <Project Name="EffectGang.csd" Type="Node" />
         <Project Name="EffectHu.csd" Type="Node" />
         <Project Name="EffectPeng.csd" Type="Node" />
         <Project Name="EffectZm.csd" Type="Node" />
+        <Project Name="GameLayer.csd" Type="Layer" />
         <Project Name="Gang0.csd" Type="Node" />
         <Project Name="Gang1.csd" Type="Node" />
+        <Project Name="HelloLayer.csd" Type="Layer" />
+        <Image Name="HelloWorld.png" />
+        <Project Name="MainScene.csd" Type="Scene" />
+        <TTF Name="num.ttf" />
         <Project Name="Peng0.csd" Type="Node" />
         <Project Name="Peng1.csd" Type="Node" />
         <Project Name="SignAnim.csd" Type="Node" />
