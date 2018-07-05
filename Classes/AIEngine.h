@@ -15,7 +15,10 @@ public:
 public:
 
     virtual bool onUserEnterEvent(IPlayer *pIPlayer);           //玩家进入游戏事件
-    virtual bool onGameStartEvent(CMD_S_GameStart GameStart);   //游戏开始事件
+    virtual bool onGameStartEvent(CMD_S_GameStart GameStart);
+
+    virtual bool onSendCardEvent(CMD_S_SendCard SendCard);
+    //游戏开始事件
 
 };
 

@@ -17,14 +17,6 @@
 #define MAX_DISCARD                  60                                //丢弃的牌
 
 
-//服务器命令结构
-#define SUB_S_GAME_START            100        //游戏开始
-#define SUB_S_OUT_CARD                101        //出牌命令
-#define SUB_S_SEND_CARD                102        //发送扑克
-#define SUB_S_OPERATE_NOTIFY        103        //操作提示
-#define SUB_S_OPERATE_RESULT        104        //操作命令
-#define SUB_S_GAME_END                105        //游戏结束
-
 struct CMD_WeaveItem {
     uint8_t cbWeaveKind;                        //组合类型
     uint8_t cbCenterCard;                       //中心扑克
@@ -94,12 +86,6 @@ struct CMD_S_GameEnd {
     uint64_t lMaGameScore[GAME_PLAYER];              //单局马积分
     uint64_t lNormalGameScore[GAME_PLAYER];          //单局常规积分
 };
-
-
-//////////////////////////////////////////////////////////////////////////
-//客户端命令结构
-#define SUB_C_OUT_CARD                1            //出牌
-#define SUB_C_OPERATE_CARD            2            //操作
 
 //出牌命令
 struct CMD_C_OutCard {

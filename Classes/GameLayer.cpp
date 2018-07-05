@@ -90,6 +90,14 @@ bool GameLayer::onGameStartEvent(CMD_S_GameStart GameStart) {
     return true;
 }
 
+/**
+ * 发牌事件
+ * @param SendCard
+ * @return
+ */
+bool GameLayer::onSendCardEvent(CMD_S_SendCard SendCard) {
+    //
+}
 
 /**
  * 显示手上的牌
