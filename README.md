@@ -20,7 +20,8 @@
 
 #### 安装教程
 
-1. 由于GIT源码上不包括Cocos2d-X 3.17源码，所以第一步需要下载并且安装 [cocos2d-x-3.17](http://www.cocos2d-x.org/filedown/cocos2d-x-3.17.zip) 安装说明移驾 [最新版本Cocos2d-X V3.17开发环境搭建](https://www.xiyoufang.com/archives/183)
+1. 由于Cocos2d源码比较庞大，GIT上不包括Cocos2d-X 3.17源码，所以第一步需要下载并且安装 [cocos2d-x-3.17](http://www.cocos2d-x.org/filedown/cocos2d-x-3.17.zip) 安装说明移驾 [最新版本Cocos2d-X V3.17开发环境搭建](https://www.xiyoufang.com/archives/183) 安装好后使用命令行创建个新项目，将项目里的cocos2d文件夹拷到本项目下，
+![输入图片说明](https://images.gitee.com/uploads/images/2018/0706/131106_5add28c6_369917.png "WX20180706-130947.png")
 2. 下载安装好Cocostudio3.10，打开UI.ccs文件即可编辑和发布UI
 ![UI编辑器](https://images.gitee.com/uploads/images/2018/0706/105227_36709445_369917.png "WX20180706-105153.png")
 3. MAC直接用Xcode 或者AppCode 直接打开 proj.ios_mac 即可运行
