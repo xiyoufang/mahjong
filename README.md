@@ -25,6 +25,7 @@
 ![UI编辑器](https://images.gitee.com/uploads/images/2018/0706/105227_36709445_369917.png "WX20180706-105153.png")
 3. MAC直接用Xcode 或者AppCode 直接打开 proj.ios_mac 即可运行
 4. AndroidStudio安装直接打开 proj.android 项目即可运行
+![输入图片说明](https://images.gitee.com/uploads/images/2018/0706/114443_07ff095f_369917.jpeg "WX20180706-113529.jpg")
 5. Visual Studio 安装未验证
 
 #### 源码说明
