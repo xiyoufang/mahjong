@@ -78,9 +78,9 @@ private:
     std::string getHandCardImagePath(uint8_t cbViewID, uint8_t cbData);         //获取手上的牌图片路径
 
 private:
-    uint8_t switchViewChairID(uint8_t cbChairID);        //椅子位置切换成视图位置
-    uint8_t switchChairViewID(uint8_t cbViewID);  //视图位置切换成椅子位置
-
+    uint8_t switchViewChairID(uint8_t cbChairID);   //椅子位置切换成视图位置
+    uint8_t switchChairViewID(uint8_t cbViewID);    //视图位置切换成椅子位置
+    void playSound(std::string file);               //播放声音
 };
 
 

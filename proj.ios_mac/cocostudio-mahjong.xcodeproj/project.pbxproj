@@ -58,6 +58,7 @@
 		B39AA0A93053AEEFB46C7223 /* UIHelper.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B39AA2242FF0B5AAB9D8591F /* UIHelper.cpp */; };
 		B39AA334E53AB39F60846B37 /* AIEngine.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B39AA628AE91B8EDDD0510C8 /* AIEngine.cpp */; };
 		B39AA358EE6530903CA1F93B /* BaseUILayer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B39AA79735B0E2C7464E7731 /* BaseUILayer.cpp */; };
+		B39AA370092E3E95F66C9FC7 /* raw in Resources */ = {isa = PBXBuildFile; fileRef = B39AA1C69494DA36E3E07F7F /* raw */; };
 		B39AA3E5A94C8346079DE743 /* UIHelper.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B39AA2242FF0B5AAB9D8591F /* UIHelper.cpp */; };
 		B39AA40DC6B67CF94ED7C175 /* AIPlayer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B39AACD2FA171538983572C4 /* AIPlayer.cpp */; };
 		B39AA4492CBDBCF2F1A16055 /* GameLayer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B39AAAFFAC04445B77DAF467 /* GameLayer.cpp */; };
@@ -68,6 +69,7 @@
 		B39AA88B9FD4DE06EDA98B9B /* AlertLayer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B39AAD2E5BAB7DB326F7E334 /* AlertLayer.cpp */; };
 		B39AAA4AADFAE20037337BEE /* AIEngine.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B39AA628AE91B8EDDD0510C8 /* AIEngine.cpp */; };
 		B39AAA76F192393C162BD0FB /* BaseUILayer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B39AA79735B0E2C7464E7731 /* BaseUILayer.cpp */; };
+		B39AAC52CF1F4CB47AC8AEBC /* raw in Resources */ = {isa = PBXBuildFile; fileRef = B39AA1C69494DA36E3E07F7F /* raw */; };
 		B39AADDDCD75AC744E904CEB /* RealPlayer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B39AA02DAB8732D6AE8D3ED3 /* RealPlayer.cpp */; };
 		B39AAE577B1E5BB0238637B2 /* AIPlayer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B39AACD2FA171538983572C4 /* AIPlayer.cpp */; };
 		B39AAF12278933FFFC30FB8C /* AlertLayer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B39AAD2E5BAB7DB326F7E334 /* AlertLayer.cpp */; };
@@ -168,6 +170,7 @@
 		52B47A461A53D09B004E4C60 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/Security.framework; sourceTree = DEVELOPER_DIR; };
 		8262943D1AAF051F00CB7CF7 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		B39AA02DAB8732D6AE8D3ED3 /* RealPlayer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = RealPlayer.cpp; sourceTree = "<group>"; };
+		B39AA1C69494DA36E3E07F7F /* raw */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = folder; path = raw; sourceTree = "<group>"; };
 		B39AA2242FF0B5AAB9D8591F /* UIHelper.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = UIHelper.cpp; sourceTree = "<group>"; };
 		B39AA36653874E8DA9E6D60E /* AIPlayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AIPlayer.h; sourceTree = "<group>"; };
 		B39AA45157A7E648BDD42253 /* BaseUILayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseUILayer.h; sourceTree = "<group>"; };
@@ -328,6 +331,7 @@
 				46880B7619C43A67006E1F66 /* CloseNormal.png */,
 				46880B7719C43A67006E1F66 /* CloseSelected.png */,
 				46880B7A19C43A67006E1F66 /* HelloWorld.png */,
+				B39AA1C69494DA36E3E07F7F /* raw */,
 			);
 			name = Resources;
 			path = ../Resources;
@@ -509,6 +513,7 @@
 				1AF87B891F6F781D007BE51C /* LaunchScreenBackground.png in Resources */,
 				46880B7B19C43A67006E1F66 /* CloseNormal.png in Resources */,
 				1AF87B881F6F781D007BE51C /* LaunchScreen.storyboard in Resources */,
+				B39AAC52CF1F4CB47AC8AEBC /* raw in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -522,6 +527,7 @@
 				521A8EAA19F11F5000D177D7 /* fonts in Resources */,
 				46880B7C19C43A67006E1F66 /* CloseNormal.png in Resources */,
 				46880B7E19C43A67006E1F66 /* CloseSelected.png in Resources */,
+				B39AA370092E3E95F66C9FC7 /* raw in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

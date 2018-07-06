@@ -2,6 +2,7 @@
 // Created by farmer on 2018/7/4.
 //
 
+#include <cocos/audio/include/SimpleAudioEngine.h>
 #include "GameLayer.h"
 #include "AIPlayer.h"
 #include "RealPlayer.h"
@@ -82,7 +83,7 @@ bool GameLayer::onUserEnterEvent(IPlayer *pIPlayer) {
 bool GameLayer::onGameStartEvent(CMD_S_GameStart GameStart) {
     cocos2d::log("接收到游戏开始事件");   //接收到游戏开始事件
     //调整头像位置
-    m_FaceFrame[0]->runAction(MoveTo::create(0.50f, Vec2(0080.00f, 210.00f)));
+    m_FaceFrame[0]->runAction(MoveTo::create(0.50f, Vec2(0080.00f, 250.00f)));
     m_FaceFrame[1]->runAction(MoveTo::create(0.50f, Vec2(0080.00f, 380.00f)));
     m_FaceFrame[2]->runAction(MoveTo::create(0.50f, Vec2(1060.00f, 640.00f)));
     m_FaceFrame[3]->runAction(MoveTo::create(0.50f, Vec2(1200.00f, 380.00f)));
@@ -173,8 +174,6 @@ bool GameLayer::onOutCardEvent(CMD_S_OutCard OutCard) {
         m_cbCardIndex[m_MeChairID][m_GameLogic->switchToCardIndex(OutCard.cbOutCardData)]--;
     }
     m_cbDiscardCard[OutCard.cbOutCardUser][m_cbDiscardCount[OutCard.cbOutCardUser]++] = OutCard.cbOutCardData;
-
-    uint8_t bCardData = OutCard.cbOutCardData;
     uint8_t cbViewID = switchViewChairID(OutCard.cbOutCardUser);
     cocostudio::timeline::ActionTimeline *action = CSLoader::createTimeline("res/SignAnim.csb");
     action->gotoFrameAndPlay(0, 10, true);
@@ -186,7 +185,7 @@ bool GameLayer::onOutCardEvent(CMD_S_OutCard OutCard) {
     for (auto &subWidget : aChildren) {
         subWidget->removeFromParent();
     }
-    ui::ImageView *pRecvCard = dynamic_cast<ui::ImageView *>(UIHelper::seekNodeByName(m_PlayerPanel[cbViewID], utility::toString("RecvCard_", (int)cbViewID)));
+    ui::ImageView *pRecvCard = dynamic_cast<ui::ImageView *>(UIHelper::seekNodeByName(m_PlayerPanel[cbViewID], utility::toString("RecvCard_", (int) cbViewID)));
     if (pRecvCard) {
         pRecvCard->setVisible(false);
     }
@@ -313,17 +312,13 @@ bool GameLayer::onOutCardEvent(CMD_S_OutCard OutCard) {
         default:
             break;
     }
-    //播放牌的声音
-    /*
-    YYDefineChar(soundFile, 300, "Mahjong/%s/mjt%s.mp3", (pClientPlayerItem->GetGender() == 0) ? "woman" : "man", utility::toString((
-            (bCardData & MASK_COLOR) >> 4) + 1, "_", bCardData & MASK_VALUE).c_str());
-    playSound(soundFile);*/
-
-    //发牌后隐藏导航
-    for (int j = 0; j < GAME_PLAYER; ++j) {
+    for (int j = 0; j < GAME_PLAYER; ++j) {   //发牌后隐藏导航
         ui::ImageView *pHighlight = dynamic_cast<ui::ImageView *>(UIHelper::seekNodeByName(m_pLayer, utility::toString("Image_Wheel_", j)));
         pHighlight->setVisible(false);
     }
+    playSound(utility::toString("raw/Mahjong/", (IPlayer::FEMALE == m_Players[OutCard.cbOutCardUser]->getSex() ? "female" : "male"), "/mjt", utility::toString((
+            (OutCard.cbOutCardData & MASK_COLOR)
+                    >> 4) + 1, "_", OutCard.cbOutCardData & MASK_VALUE), ".mp3"));    //播放牌的声音
     return true;
 }
 
@@ -959,4 +954,13 @@ uint8_t GameLayer::switchViewChairID(uint8_t cbChairID) {
  */
 uint8_t GameLayer::switchChairViewID(uint8_t cbViewID) {
     return (cbViewID + m_MeChairID) % m_CurPlayer;
+}
+
+/**
+ * 播放声音
+ * @param file
+ */
+void GameLayer::playSound(std::string file) {
+    CocosDenshion::SimpleAudioEngine::getInstance()->playEffect(file.c_str(), false);
+    CocosDenshion::SimpleAudioEngine::getInstance()->setEffectsVolume(0.8);   //音量
 }
