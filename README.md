@@ -2,18 +2,28 @@
 
 #### 项目介绍
 基于Cocos2d-X 3.17 与 cocostudio V3.10 开发的麻将游戏
+![截图](https://images.gitee.com/uploads/images/2018/0706/103629_69b97848_369917.jpeg "Simulator Screen Shot - iPhone 5s - 2018-07-06 at 10.21.08.jpg")
 
 #### 软件架构
-软件架构说明
 
+* 游戏引擎基于最新版本 Cocos2d-X v3.17
+* 游戏UI设计使用 Cocostudio3.10
+* 游戏使用C++开发
+
+##### 相关下载：
+
+* [cocos2d-x-3.17下载](http://www.cocos2d-x.org/filedown/cocos2d-x-3.17.zip)
+* [Windows版本下载，CocosForWin-v3.10.exe](http://www.cocos2d-x.org/filedown/CocosForWin-v3.10.exe)
+* [MAC版本下载，CocosForMac-v3.10](http://www.cocos2d-x.org/filedown/CocosForMac-v3.10.dmg)
 
 #### 安装教程
 
-1. xxxx
-2. xxxx
-3. xxxx
+1. 由于GIT源码上不包括Cocos2d-X 3.17源码，所以第一步需要下载并且安装 [cocos2d-x-3.17](http://www.cocos2d-x.org/filedown/cocos2d-x-3.17.zip) 安装说明移驾 [最新版本Cocos2d-X V3.17开发环境搭建](http://https://www.xiyoufang.com/archives/183)
+2. 下载安装好Cocostudio3.10，打开UI.ccs文件即可编辑和发布UI
+![UI编辑器](https://images.gitee.com/uploads/images/2018/0706/105227_36709445_369917.png "WX20180706-105153.png")
+3. MAC直接用Xcode 或者AppCode 直接打开 proj.ios_mac 即可运行
 
-#### 使用说明
+#### 源码说明
 
 1. xxxx
 2. xxxx
@@ -27,11 +37,6 @@
 4. 新建 Pull Request
 
 
-#### 码云特技
+#### 其他
 
-1. 使用 Readme\_XXX.md 来支持不同的语言，例如 Readme\_en.md, Readme\_zh.md
-2. 码云官方博客 [blog.gitee.com](https://blog.gitee.com)
-3. 你可以 [https://gitee.com/explore](https://gitee.com/explore) 这个地址来了解码云上的优秀开源项目
-4. [GVP](https://gitee.com/gvp) 全称是码云最有价值开源项目，是码云综合评定出的优秀开源项目
-5. 码云官方提供的使用手册 [http://git.mydoc.io/](http://git.mydoc.io/)
-6. 码云封面人物是一档用来展示码云会员风采的栏目 [https://gitee.com/gitee-stars/](https://gitee.com/gitee-stars/)
+1. 个人博客 [www.xiyoufang.com](https://www.xiyoufang.com) 获取更多软件开发信息
