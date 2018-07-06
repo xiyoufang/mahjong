@@ -110,6 +110,15 @@ bool GameLayer::onSendCardEvent(CMD_S_SendCard SendCard) {
     if (SendCard.cbCurrentUser == m_MeChairID) {
         m_cbCardIndex[m_MeChairID][m_GameLogic->switchToCardIndex(SendCard.cbCardData)]++;
     }
+    return showSendCard(SendCard);
+}
+
+/**
+ * 发牌显示
+ * @param SendCard
+ * @return
+ */
+bool GameLayer::showSendCard(CMD_S_SendCard SendCard){
     m_pOperateNotifyGroup->removeAllChildren();
     m_pOperateNotifyGroup->setVisible(true);
     this->unschedule(schedule_selector(GameLayer::sendCardTimerUpdate));
@@ -162,7 +171,6 @@ bool GameLayer::onSendCardEvent(CMD_S_SendCard SendCard) {
     }
     return true;
 }
-
 
 /**
  * 出牌事件
@@ -353,6 +361,142 @@ bool GameLayer::showTingResult(const uint8_t *cbCardIndex, tagWeaveItem *WeaveIt
     return true;
 }
 
+/**
+ * 操作提示
+ * @param OperateNotify
+ * @return
+ */
+bool GameLayer::onOperateNotifyEvent(CMD_S_OperateNotify OperateNotify) {
+    return showOperateNotify(OperateNotify);
+}
+
+/**
+ * 操作结果事件
+ * @param OperateResult
+ * @return
+ */
+bool GameLayer::onOperateResultEvent(CMD_S_OperateResult OperateResult) {
+    //更新数据
+    tagWeaveItem weaveItem;
+    memset(&weaveItem, 0, sizeof(tagWeaveItem));
+    switch (OperateResult.cbOperateCode) {
+        case WIK_NULL: {
+            break;
+        }
+        case WIK_P: {
+            weaveItem.cbWeaveKind = WIK_P;
+            weaveItem.cbCenterCard = OperateResult.cbOperateCard;
+            weaveItem.cbPublicCard = TRUE;
+            weaveItem.cbProvideUser = OperateResult.cbProvideUser;
+            weaveItem.cbValid = TRUE;
+            m_WeaveItemArray[OperateResult.cbOperateUser][m_cbWeaveItemCount[OperateResult.cbOperateUser]++] = weaveItem;
+            if (OperateResult.cbOperateUser == m_MeChairID) {  //自己
+                uint8_t cbReomveCard[] = {OperateResult.cbOperateCard, OperateResult.cbOperateCard};
+                m_GameLogic->removeCard(m_cbCardIndex[OperateResult.cbOperateUser], cbReomveCard, sizeof(cbReomveCard));
+            }
+            break;
+        }
+        case WIK_G: {
+            weaveItem.cbWeaveKind = WIK_G;
+            weaveItem.cbCenterCard = OperateResult.cbOperateCard;
+            uint8_t cbPublicCard = (OperateResult.cbOperateUser == OperateResult.cbProvideUser) ? FALSE : TRUE;
+            int j = -1;
+            for (int i = 0; i < m_cbWeaveItemCount[OperateResult.cbOperateUser]; i++) {
+                tagWeaveItem tempWeaveItem = m_WeaveItemArray[OperateResult.cbOperateUser][i];
+                if (tempWeaveItem.cbCenterCard == OperateResult.cbOperateCard) {   //之前已经存在
+                    cbPublicCard = TRUE;
+                    j = i;
+                }
+            }
+            weaveItem.cbPublicCard = cbPublicCard;
+            weaveItem.cbProvideUser = OperateResult.cbProvideUser;
+            weaveItem.cbValid = TRUE;
+            if (j == -1) {
+                m_WeaveItemArray[OperateResult.cbOperateUser][m_cbWeaveItemCount[OperateResult.cbOperateUser]++] = weaveItem;
+            } else {
+                m_WeaveItemArray[OperateResult.cbOperateUser][j] = weaveItem;
+            }
+            if (OperateResult.cbOperateUser == m_MeChairID) {  //自己
+                m_GameLogic->removeAllCard(m_cbCardIndex[OperateResult.cbOperateUser], OperateResult.cbOperateCard);
+            }
+            break;
+        }
+        case WIK_H: {
+            break;
+        }
+        default:
+            break;
+    }
+
+    //更新界面
+    uint8_t cbCardData = OperateResult.cbOperateCard;
+    uint8_t cbViewID = switchViewChairID(OperateResult.cbOperateUser);
+    switch (cbViewID) {
+        case 0: {   //自己操作反馈
+            m_pOperateNotifyGroup->removeAllChildren();
+            m_pOperateNotifyGroup->setVisible(false);
+            ui::ImageView *pHighlight = dynamic_cast<ui::ImageView *>(UIHelper::seekNodeByName(m_pLayer, "Image_Wheel_0"));
+            pHighlight->setVisible(true);
+            break;
+        }
+        default:
+            break;
+    }
+    std::string strSex = (IPlayer::FEMALE == m_Players[OperateResult.cbOperateUser]->getSex() ? "female" : "male");
+    switch (OperateResult.cbOperateCode) {
+        case WIK_NULL: {
+            break;
+        }
+        case WIK_P: {
+            playSound(utility::toString("Mahjong/", strSex, "/peng.mp3"));
+            if (cbViewID == 0) {                    //如果是自己，碰完需要出牌
+                uint8_t bTempCardData[MAX_COUNT];   //手上的牌
+                memset(bTempCardData, 0, sizeof(bTempCardData));
+                m_GameLogic->switchToCardData(m_cbCardIndex[OperateResult.cbOperateUser], bTempCardData, MAX_COUNT);
+                uint8_t cbWeaveItemCount = m_cbWeaveItemCount[OperateResult.cbOperateUser]; //组合数量
+                CMD_S_SendCard SendCard;
+                memset(&SendCard, 0, sizeof(CMD_S_SendCard));
+                SendCard.cbCurrentUser = OperateResult.cbOperateUser;
+                SendCard.cbCardData = bTempCardData[MAX_COUNT - (cbWeaveItemCount * 3) - 1];
+                showSendCard(SendCard);    //模拟发送一张牌
+            }
+            //移除桌上的哪张牌
+            m_cbDiscardCount[OperateResult.cbProvideUser]--;  //移除桌上的牌
+            showAndUpdateDiscardCard();
+            break;
+        }
+        case WIK_G: {
+            playSound(utility::toString("Mahjong/", strSex, "/gang.mp3"));
+            if (OperateResult.cbProvideUser != OperateResult.cbOperateUser) {     //放的杠
+                m_cbDiscardCount[OperateResult.cbProvideUser]--;  //移除桌上的牌
+                showAndUpdateDiscardCard();
+            } else {                                                            //移除出牌位置的牌
+                ui::Layout *pRecvCardList = dynamic_cast<ui::Layout *>(UIHelper::seekNodeByName(m_PlayerPanel[0], utility::toString("RecvHandCard_0")));
+                pRecvCardList->removeAllChildren();
+            }
+            break;
+        }
+        case WIK_H: { //胡牌动作放在游戏结束 信息中
+            if (OperateResult.cbOperateUser == OperateResult.cbProvideUser) {  //自摸
+                playSound(utility::toString("Mahjong/", strSex, "/zimo.mp3"));
+            } else {
+                playSound(utility::toString("Mahjong/", strSex, "/hu.mp3"));
+            }
+            break;
+        }
+        default:
+            break;
+    }
+    showAndPlayOperateEffect(cbViewID, OperateResult.cbOperateCode, OperateResult.cbProvideUser == OperateResult.cbOperateUser);
+    showAndUpdateHandCard();
+    return true;
+}
+
+/**
+ * 展示操作层
+ * @param OperateNotify
+ * @return
+ */
 bool GameLayer::showOperateNotify(CMD_S_OperateNotify OperateNotify) {
     if (OperateNotify.cbActionMask == WIK_NULL) {
         return true; //无动作
@@ -678,10 +822,188 @@ bool GameLayer::showAndUpdateHandCard() {
 }
 
 /**
- * 显示桌上的牌
+ * 播放特效
+ * @param cbViewID
+ * @param cbOperateCode
+ * @param bZm
+ * @return
+ */
+bool GameLayer::showAndPlayOperateEffect(uint8_t cbViewID, uint8_t cbOperateCode, bool bZm) {
+
+    float x = 0;
+    float y = 0;
+    switch (cbViewID) {
+        case 0: {   //自己操作反馈
+            x = 640.0f;
+            y = 200.0f;
+            break;
+        }
+        case 1: {
+            x = 440.0f;
+            y = 360.0f;
+            break;
+        }
+        case 2: {
+            x = 640.0f;
+            y = 520.0f;
+            break;
+        }
+        case 3: {
+            x = 840.0f;
+            y = 360.0f;
+            break;
+        }
+        default:
+            break;
+    }
+    std::string strEffect = "";
+    switch (cbOperateCode) {
+        case WIK_NULL: {
+            break;
+        }
+        case WIK_P: {
+            strEffect = "res/EffectPeng.csb";
+            break;
+        }
+        case WIK_G: {
+            strEffect = "res/EffectGang.csb";
+            break;
+        }
+        case WIK_H: {
+            strEffect = bZm ? "res/EffectZm.csb" : "res/EffectHu.csb";
+            break;
+        }
+        default:
+            break;
+    }
+    if (strEffect != "") {
+        std::string strNodeName = "EffectNode";
+        Node *pEffectNode = CSLoader::createNode(strEffect);
+        pEffectNode->setPosition(Vec2(x, y));
+        cocostudio::timeline::ActionTimeline *action = CSLoader::createTimeline(strEffect);
+        action->gotoFrameAndPlay(0, false);
+        pEffectNode->setName(strNodeName);
+        m_pLayer->addChild(pEffectNode);
+        if (cbOperateCode != WIK_H) {    //胡牌不自动删除动画
+            action->setLastFrameCallFunc(CC_CALLBACK_0(GameLayer::removeEffectNode, this, strNodeName));
+        }
+        pEffectNode->runAction(action);
+    }
+    return true;
+}
+
+/**
+ * 移除动画节点
+ * @param strNodeName
+ */
+void GameLayer::removeEffectNode(std::string strNodeName) {
+    std::vector<Node *> aChildren;
+    aChildren.clear();
+    UIHelper::getChildren(m_pLayer, strNodeName, aChildren);
+    for (auto &subChild : aChildren) {
+        subChild->removeFromParent();
+    }
+}
+
+/**
+ * 显示、更新桌上的牌
  * @return
  */
 bool GameLayer::showAndUpdateDiscardCard() {
+    for (uint8_t cbChairID = 0; cbChairID < m_CurPlayer; cbChairID++) {
+        uint8_t cbViewID = switchViewChairID(cbChairID);
+        switch (cbViewID) {
+            case 0: {
+                ui::Layout *pDiscardCard0 = dynamic_cast<ui::Layout *>(UIHelper::seekNodeByName(m_pLayer, "DiscardCard_0"));
+                pDiscardCard0->removeAllChildren();
+                uint8_t bDiscardCount = m_cbDiscardCount[cbChairID];
+                float x = 0;
+                float y = 0;
+                for (uint8_t i = 0; i < bDiscardCount; i++) {
+                    uint8_t col = static_cast<uint8_t>(i % 12);
+                    uint8_t row = static_cast<uint8_t>(i / 12);
+                    x = (col == 0) ? 0 : x;  //X复位
+                    y = row * 90;
+                    ui::ImageView *pCard0 = createDiscardCardImageView(cbViewID, m_cbDiscardCard[cbChairID][i]);
+                    pCard0->setAnchorPoint(Vec2(0, 0));
+                    pCard0->setPosition(Vec2(x, y));
+                    pCard0->setLocalZOrder(10 - row);
+                    x += 76;
+                    pDiscardCard0->addChild(pCard0);
+                }
+                pDiscardCard0->setScale(0.7, 0.7);
+                break;
+            }
+            case 1: {
+                //显示出的牌
+                ui::Layout *pDiscardCard1 = dynamic_cast<ui::Layout *>(UIHelper::seekNodeByName(m_pLayer, "DiscardCard_1"));
+                pDiscardCard1->removeAllChildren();
+                uint8_t bDiscardCount = m_cbDiscardCount[cbChairID];
+                float x = 0;
+                float y = 0;
+                for (uint8_t i = 0; i < bDiscardCount; i++) {
+                    uint8_t col = static_cast<uint8_t>(i % 11);
+                    uint8_t row = static_cast<uint8_t>(i / 11);
+                    y = (col == 0) ? 0 : y;  //X复位
+                    x = 116 * row;
+                    ui::ImageView *pCard1 = createDiscardCardImageView(cbViewID, m_cbDiscardCard[cbChairID][i]);
+                    pCard1->setAnchorPoint(Vec2(0, 0));
+                    pCard1->setPosition(Vec2(x, 740 - y));
+                    pCard1->setLocalZOrder(col);
+                    y += 74;
+                    pDiscardCard1->addChild(pCard1);
+                }
+                pDiscardCard1->setScale(0.5, 0.5);
+                break;
+            }
+            case 2: {
+                ui::Layout *pDiscardCard2 = dynamic_cast<ui::Layout *>(UIHelper::seekNodeByName(m_pLayer, "DiscardCard_2"));
+                pDiscardCard2->removeAllChildren();
+                uint8_t bDiscardCount = m_cbDiscardCount[cbChairID];
+                float x = 0;
+                float y = 0;
+                for (uint8_t i = 0; i < bDiscardCount; i++) {
+                    uint8_t col = static_cast<uint8_t>(i % 12);
+                    uint8_t row = static_cast<uint8_t>(i / 12);
+                    x = (col == 0) ? 0 : x;  //X复位
+                    y = 90 - row * 90;
+                    ui::ImageView *pCard2 = createDiscardCardImageView(cbViewID, m_cbDiscardCard[cbChairID][i]);
+                    pCard2->setAnchorPoint(Vec2(0, 0));
+                    pCard2->setPosition(Vec2(x, y));
+                    pCard2->setLocalZOrder(row);
+                    x += 76;
+                    pDiscardCard2->addChild(pCard2);
+                }
+                pDiscardCard2->setScale(0.7, 0.7);
+
+                break;
+            }
+            case 3: {
+                //显示出的牌
+                ui::Layout *pDiscardCard3 = dynamic_cast<ui::Layout *>(UIHelper::seekNodeByName(m_pLayer, "DiscardCard_3"));
+                pDiscardCard3->removeAllChildren();
+                uint8_t bDiscardCount = m_cbDiscardCount[cbChairID];
+                float x = 0;
+                float y = 0;
+                for (uint8_t i = 0; i < bDiscardCount; i++) {
+                    uint8_t col = static_cast<uint8_t>(i % 11);
+                    uint8_t row = static_cast<uint8_t>(i / 11);
+                    y = (col == 0) ? 0 : y;  //X复位
+                    x = 240 - (116 * row);
+                    ui::ImageView *pCard3 = createDiscardCardImageView(cbViewID, m_cbDiscardCard[cbChairID][i]);
+                    pCard3->setAnchorPoint(Vec2(0, 0));
+                    pCard3->setPosition(Vec2(x, y));
+                    pCard3->setLocalZOrder(20 - col);
+                    y += 74;
+                    pDiscardCard3->addChild(pCard3);
+                }
+                pDiscardCard3->setScale(0.5, 0.5);
+                break;
+            }
+            default:
+                break;
+        }
+    }
     return true;
 }
 
@@ -831,7 +1153,8 @@ void GameLayer::onOperateTouch(Ref *ref, ui::Widget::TouchEventType eventType) {
                     m_pOperateNotifyGroup->removeAllChildren();
                     m_pOperateNotifyGroup->setVisible(false);
                 }
-//              sendOperateResult(OperateCard);
+                OperateCard.cbOperateUser = m_MeChairID;
+                m_GameEngine->onUserOperateCard(OperateCard);
                 break;
             default:
                 break;

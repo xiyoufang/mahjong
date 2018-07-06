@@ -65,11 +65,15 @@ private:
     virtual bool onGameStartEvent(CMD_S_GameStart GameStart);    //游戏开始事件
     virtual bool onSendCardEvent(CMD_S_SendCard SendCard);       //发牌事件
     virtual bool onOutCardEvent(CMD_S_OutCard OutCard);          //出牌事件
+    virtual bool onOperateNotifyEvent(CMD_S_OperateNotify OperateNotify);   //操作通知事件
+    virtual bool onOperateResultEvent(CMD_S_OperateResult OperateResult);   //操作结果事件
 
 private:
-    bool showAndUpdateHandCard();                        //显示手上的牌
-    bool showAndUpdateDiscardCard();                     //显示桌上的牌
-    bool showOperateNotify(CMD_S_OperateNotify OperateNotify);                  //显示操作通知
+    bool showAndUpdateHandCard();                                                   //显示手上的牌
+    bool showAndUpdateDiscardCard();                                                //显示桌上的牌
+    bool showSendCard(CMD_S_SendCard SendCard);                                     //发牌显示
+    bool showOperateNotify(CMD_S_OperateNotify OperateNotify);                      //显示操作通知
+    bool showAndPlayOperateEffect(uint8_t cbViewID,uint8_t cbOperateCode, bool bZm);//播放特效
     bool showTingResult(const uint8_t cbCardIndex[MAX_INDEX], tagWeaveItem WeaveItem[], uint8_t cbWeaveCount);   //显示听牌的结果
     ui::ImageView *createHandCardImageView(uint8_t cbViewID, uint8_t cbData);   //创建牌的ImageView
     ui::ImageView *createDiscardCardImageView(uint8_t cbViewID, uint8_t cbData);//创建出牌的ImageView
@@ -81,6 +85,8 @@ private:
     uint8_t switchViewChairID(uint8_t cbChairID);   //椅子位置切换成视图位置
     uint8_t switchChairViewID(uint8_t cbViewID);    //视图位置切换成椅子位置
     void playSound(std::string file);               //播放声音
+    void removeEffectNode(std::string strNodeName); //移除特效
+
 };
 
 

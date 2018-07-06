@@ -7,6 +7,7 @@
 
 #include "GameCmd.h"
 #include "GameLogic.h"
+#include "FvMask.h"
 
 
 class IPlayer;
@@ -55,6 +56,20 @@ public:
      */
     virtual bool onOutCardEvent(CMD_S_OutCard OutCard) = 0;
 
+    /**
+     * 操作通知事件
+     * @param OperateNotify
+     * @return
+     */
+    virtual bool onOperateNotifyEvent(CMD_S_OperateNotify OperateNotify) = 0;
+
+    /**
+     * 操作结果事件
+     * @param OperateResult
+     * @return
+     */
+    virtual bool onOperateResultEvent(CMD_S_OperateResult OperateResult) = 0;
+
 };
 
 
@@ -70,6 +85,7 @@ private:
     uint8_t m_cbMa;                                   //买马数量
     uint8_t m_cbProvideCard;                          //当前供应的牌
     uint8_t m_cbProvideUser;                          //供应的玩家
+    uint8_t m_cbResumeUser;                           //暂存玩家，用于碰、杠后恢复
     uint8_t m_cbCurrentUser;                          //当前操作的玩家
     uint8_t m_cbOutCardUser;                          //出牌玩家
     uint8_t m_cbOutCardData;                          //出牌数据
@@ -114,8 +130,10 @@ public:
     bool onUserEnter(IPlayer *pIPlayer);    //玩家进入
     bool dispatchCardData(uint8_t cbCurrentUser, bool bTail = false);    //发牌
     bool estimateUserRespond(uint8_t cbCurrentUser, uint8_t cbCurrentCard, EstimateKind estimateKind);  //检测响应
+    bool sendOperateNotify();   //发送操作通知
 public:
     static GameEngine *GetGameEngine();  //获取单例
+    bool onUserOperateCard(CMD_C_OperateCard OperateCard);
 };
 
 

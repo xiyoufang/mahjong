@@ -25,30 +25,30 @@
 
 //////////////////////////////////////////////////////////////////////////
 //胡牌类型
-#define    CHR_NULL    0x00    //没胡标识
-#define    CHR_PH        0x01    //平胡
-#define CHR_PPH        0x02    //碰碰胡
-#define CHR_QS        0x04    //清色
-#define CHR_DY        0x08    //钓鱼
-#define CHR_QD        0x10    //七对
-#define CHR_DH        0x20    //地胡
-#define CHR_TH        0x40    //天胡
+#define CHR_NULL     0x00    //没胡标识
+#define CHR_PH       0x01    //平胡
+#define CHR_PPH      0x02    //碰碰胡
+#define CHR_QS       0x04    //清色
+#define CHR_DY       0x08    //钓鱼
+#define CHR_QD       0x10    //七对
+#define CHR_DH       0x20    //地胡
+#define CHR_TH       0x40    //天胡
 
 
 //胡牌方式
-#define CHK_NULL    0x00        //非胡
-#define    CHK_ZM        0x01        //自摸
-#define CHK_JP        0x02        //接炮
-#define CHK_QG        0x04        //抢杠
-#define CHK_GK        0x08        //抢开
+#define CHK_NULL     0x00        //非胡
+#define CHK_ZM       0x01        //自摸
+#define CHK_JP       0x02        //接炮
+#define CHK_QG       0x04        //抢杠
+#define CHK_GK       0x08        //抢开
 
 //特殊情况
-#define CHS_NULL    0x00        //无情况
-#define CHS_DZ        0x01        //单张
-#define CHS_DH        0x02        //地胡
-#define CHS_TH        0x04        //天胡
-#define CHS_GP        0x08        //有杠
-#define CHS_KZ        0x10        //卡张
+#define CHS_NULL     0x00        //无情况
+#define CHS_DZ       0x01        //单张
+#define CHS_DH       0x02        //地胡
+#define CHS_TH       0x04        //天胡
+#define CHS_GP       0x08        //有杠
+#define CHS_KZ       0x10        //卡张
 
 
 //////////////////////////////////////////////////////////////////////////
@@ -102,6 +102,7 @@ public:
     bool removeCard(uint8_t cbCardIndex[MAX_INDEX], uint8_t cbRemoveCard);//删除扑克
     bool removeCard(uint8_t cbCardIndex[MAX_INDEX], uint8_t cbRemoveCard[], uint8_t cbRemoveCount); //删除扑克
     bool removeCard(uint8_t cbCardData[], uint8_t cbCardCount, uint8_t cbRemoveCard[], uint8_t cbRemoveCount); //删除扑克
+    bool removeAllCard(uint8_t cbCardIndex[MAX_INDEX], uint8_t cbRemoveCard);   //移除指定的牌
 
 public://内部函数
     bool isValidCard(uint8_t cbCardData);           //有效判断

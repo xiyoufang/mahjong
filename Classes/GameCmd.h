@@ -10,6 +10,7 @@
 #include <cstdint>
 
 #define INVALID_CHAIR                0xFF                              //无效椅子
+#define INVALID_BYTE                 0xFF                              //无效BYTE
 
 #define GAME_PLAYER                  4                                 //玩家数量
 #define MAX_WEAVE                    4                                 //最大组合
@@ -59,8 +60,8 @@ struct CMD_S_OperateNotify {
     uint8_t cbResumeUser;                        //还原用户
     uint8_t cbActionMask;                        //动作掩码
     uint8_t cbActionCard;                        //动作扑克
-    uint8_t cbGangCount;                        //可以杠的数量
-    uint8_t cbGangCard[MAX_WEAVE];                //可以杠的牌
+    uint8_t cbGangCount;                         //可以杠的数量
+    uint8_t cbGangCard[MAX_WEAVE];               //可以杠的牌
 };
 
 //操作结果
@@ -97,6 +98,7 @@ struct CMD_C_OutCard {
 
 //操作命令
 struct CMD_C_OperateCard {
+    uint8_t cbOperateUser;                         //操作玩家
     uint8_t cbOperateCode;                         //操作代码
     uint8_t cbOperateCard;                         //操作扑克
 };

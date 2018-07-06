@@ -89,6 +89,7 @@ list(APPEND GAME_HEADER
      Classes/Utility.h
      Classes/ViewControl.h
      Classes/ViewObject.h
+     Classes/FvMask.h
      )
 
 if(ANDROID)

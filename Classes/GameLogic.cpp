@@ -198,6 +198,20 @@ bool GameLogic::removeCard(uint8_t *cbCardData, uint8_t cbCardCount, uint8_t *cb
 }
 
 /**
+ * 删除指定的麻将
+ * @param cbCardIndex
+ *  麻将数组
+ * @param cbRemoveCard
+ *  麻将
+ * @return
+ */
+bool GameLogic::removeAllCard(uint8_t cbCardIndex[MAX_INDEX], uint8_t cbRemoveCard) {
+    uint8_t cbRemoveIndex = switchToCardIndex(cbRemoveCard);
+    cbCardIndex[cbRemoveIndex] = 0;
+    return true;
+}
+
+/**
  * 获取牌数量
  * @param cbCardIndex
  * @return

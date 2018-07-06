@@ -185,6 +185,7 @@
 		B39AAAFFAC04445B77DAF467 /* GameLayer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GameLayer.cpp; sourceTree = "<group>"; };
 		B39AAB8302A5EF2189A00C9D /* RealPlayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RealPlayer.h; sourceTree = "<group>"; };
 		B39AAC6B50BFC88432A4132B /* GameCmd.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameCmd.h; sourceTree = "<group>"; };
+		B39AAC9D7ADAAAD710AFECE3 /* FvMask.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FvMask.h; sourceTree = "<group>"; };
 		B39AACD2FA171538983572C4 /* AIPlayer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = AIPlayer.cpp; sourceTree = "<group>"; };
 		B39AACDB9DAEC436BB720FCB /* GameLogic.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameLogic.h; sourceTree = "<group>"; };
 		B39AAD0591532E69674A88CD /* AlertLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AlertLayer.h; sourceTree = "<group>"; };
@@ -373,6 +374,7 @@
 				B39AAA4D3F3D21D80372368E /* Utility.h */,
 				B39AA628AE91B8EDDD0510C8 /* AIEngine.cpp */,
 				B39AAED5903E2E9FA8E867A5 /* AIEngine.h */,
+				B39AAC9D7ADAAAD710AFECE3 /* FvMask.h */,
 			);
 			name = Classes;
 			path = ../Classes;
