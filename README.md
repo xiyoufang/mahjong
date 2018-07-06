@@ -79,7 +79,7 @@
 |AIEngine.h/AIEngine.cpp|机器人引擎|
 
 
-* GameEngine.h中定义的IGameEngineEventListener接口，该接口用于玩家处理游戏事件，AIEngine实现了机器人的游戏事件处理接口，GameLayer中实现了真是玩家的游戏事件处理接口。
+* GameEngine.h中定义的IGameEngineEventListener接口，该接口用于玩家处理游戏事件，AIEngine实现了机器人的游戏事件处理接口，GameLayer中实现了真实玩家的游戏事件处理接口。
 
 
 #### 参与贡献
