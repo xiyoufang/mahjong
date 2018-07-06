@@ -30,9 +30,57 @@
 
 #### 源码说明
 
-1. xxxx
-2. xxxx
-3. xxxx
+##### UI项目说明
+
+* cocosstudio目录为UI目录
+* UI.ccs是UI项目配置文件
+
+| 文件 | 说明 |
+| -------- | -------- |
+|HelloLayer.csd|欢迎界面层|
+|AlertLayer.csd|弹框层|
+|GameLayer.csd|游戏层|
+|Gang0.csd|横向显示杠的节点|
+|Peng0.csd|横向显示碰的节点|
+|Gang1.csd|竖向显示杠的节点|
+|Peng1.csd|竖向显示碰的节点|
+|BtnPeng.csd|碰按钮节点|
+|BtnGang.csd|杠按钮节点|
+|BtnHu.csd|胡按钮节点|
+|BtnGuo.csd|过按钮节点|
+|EffectZm.csd|自摸特效|
+|EffectPeng.csd|碰特效|
+|EffectHu.csd|胡特效|
+|EffectGang.csd|杠特效|
+|SignAnim.csd|标记当前出牌动画|
+|~~MainScene.csd~~|~~没用~~|
+
+##### 源码说明
+
+| 文件 | 说明 |
+| -------- | -------- |
+|AppDelegate.h/AppDelegate.cpp|Cocos2d游戏启动类|
+|GameSceneManager.h/GameSceneManager.cpp|单例，封装创建提示层、设置Scene和Layer等|
+|AlertLayer.h/AlertLayer.cpp|弹出层类|
+|HelloWorldScene.h/HelloWorldScene.cpp|游戏Scene类|
+|BaseUILayer.h/BaseUILayer.cpp|Cocostudio界面基类，封装了部分按钮事件绑定功能|
+|HelloLayer.h/HelloLayer.cpp|游戏初始欢迎界面类|
+|GameLayer.h/GameLayer.cpp|游戏层界面类，用来控制游戏的显示|
+|ViewControl.h/ViewControl.cpp|通过观察者模式，控制界面切换|
+|ViewObject.h/ViewObject.cpp|封装界面切换指令与数据|
+|UIHelper.h/UIHelper.cpp|UI工具类，封装节点查找方法|
+|Utility.h|工具类，封装字符串操作方法|
+|IPlayer.h|游戏玩家基类|
+|AIPlayer.h/AIPlayer.cpp|机器人玩家|
+|RealPlayer.h/RealPlayer.cpp|真实玩法|
+|GameEngine.h/GameEngine.cpp|麻将引擎，控制游戏逻辑流转|
+|GameLogic.h/GameLogic.cpp|麻将算法类|
+|GameCmd.h|麻将传递的对象定义|
+|AIEngine.h/AIEngine.cpp|机器人引擎|
+
+
+* GameEngine.h中定义的IGameEngineEventListener接口，该接口用于玩家处理游戏事件，AIEngine实现了机器人的游戏事件处理接口，GameLayer中实现了真是玩家的游戏事件处理接口。
+
 
 #### 参与贡献
 
