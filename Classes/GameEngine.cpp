@@ -45,6 +45,11 @@ void GameEngine::init() {
     memset(m_cbHuSpecial, 0, sizeof(m_cbHuSpecial));                                  //清空胡牌方式
     memset(m_cbTempUserAction, 0, sizeof(m_cbTempUserAction));                        //清空临时动作
     memset(m_cbWeaveItemCount, 0, sizeof(m_cbWeaveItemCount));                        //清空组合
+    memset(m_cbUserAction, 0, sizeof(m_cbUserAction));                                //玩家动作
+    memset(m_cbTempUserAction, 0, sizeof(m_cbTempUserAction));                        //临时动作
+    memset(m_cbOperateCard, 0, sizeof(m_cbOperateCard));                              //操作的牌
+    memset(m_cbPerformAction, 0, sizeof(m_cbPerformAction));                          //自动默认动作
+    memset(m_cbFanShu, 0, sizeof(m_cbFanShu));                                        //结算番数
     for (uint8_t i = 0; i < MAX_WEAVE; ++i) {
         memset(&m_WeaveItemArray[i], 0, sizeof(m_WeaveItemArray[i]));
     }
