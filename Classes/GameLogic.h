@@ -6,6 +6,7 @@
 #define COCOSTUDIO_MAHJONG_GAMELOGIC_H
 
 #include "GameCmd.h"
+#include <vector>
 
 #define    MASK_COLOR                    0xF0                                //花色掩码
 #define    MASK_VALUE                    0x0F                                //数值掩码

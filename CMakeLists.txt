@@ -54,19 +54,40 @@ include_directories(
 )
 # add cross-platforms source files and header files 
 list(APPEND GAME_SOURCE
+     Classes/AIEngine.cpp
+     Classes/AIPlayer.cpp
+     Classes/AlertLayer.cpp
      Classes/AppDelegate.cpp
-     Classes/HelloWorldScene.cpp
+     Classes/BaseUILayer.cpp
+     Classes/GameEngine.cpp
+     Classes/GameLayer.cpp
+     Classes/GameLogic.cpp
      Classes/GameSceneManager.cpp
-     Classes/ViewControl.cpp
      Classes/HelloLayer.cpp
+     Classes/HelloWorldScene.cpp
+     Classes/RealPlayer.cpp
+     Classes/UIHelper.cpp
+     Classes/ViewControl.cpp
      Classes/ViewObject.cpp
      )
 list(APPEND GAME_HEADER
+     Classes/AIEngine.h
+     Classes/AIPlayer.h
+     Classes/AlertLayer.h
      Classes/AppDelegate.h
-     Classes/HelloWorldScene.h
+     Classes/BaseUILayer.h
+     Classes/GameCmd.h
+     Classes/GameEngine.h
+     Classes/GameLayer.h
+     Classes/GameLogic.h
      Classes/GameSceneManager.h
-     Classes/ViewControl.h
      Classes/HelloLayer.h
+     Classes/HelloWorldScene.h
+     Classes/IPlayer.h
+     Classes/RealPlayer.h
+     Classes/UIHelper.h
+     Classes/Utility.h
+     Classes/ViewControl.h
      Classes/ViewObject.h
      )
 

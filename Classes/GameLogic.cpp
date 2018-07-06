@@ -30,11 +30,11 @@ const uint8_t GameLogic::m_cbCardDataArray[MAX_REPERTORY] = {
  * @param cbMaxCount
  */
 void GameLogic::shuffle(uint8_t *cbCardData, uint8_t cbMaxCount) {
+    srand(static_cast<unsigned int>(time(NULL)));
     uint8_t cbCardDataTemp[sizeof(m_cbCardDataArray)];
     memcpy(cbCardDataTemp, m_cbCardDataArray, sizeof(m_cbCardDataArray));
     uint8_t cbRandCount = 0, cbPosition = 0;
     do {
-        srand(static_cast<unsigned int>(time(NULL)));
         cbPosition = static_cast<uint8_t>(rand() % (cbMaxCount - cbRandCount));
         cbCardData[cbRandCount++] = cbCardDataTemp[cbPosition];
         cbCardDataTemp[cbPosition] = cbCardDataTemp[cbMaxCount - cbRandCount];

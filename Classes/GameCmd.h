@@ -6,6 +6,9 @@
 #ifndef COCOSTUDIO_MAHJONG_GAMECMD_H
 #define COCOSTUDIO_MAHJONG_GAMECMD_H
 
+
+#include <cstdint>
+
 #define INVALID_CHAIR                0xFF                              //无效椅子
 
 #define GAME_PLAYER                  4                                 //玩家数量
