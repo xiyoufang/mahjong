@@ -15,7 +15,6 @@ public:
      * 通过Tag查找子节点
      * */
     static Node *seekNodeByTag(Node *root, int tag);
-
     /**
      * 通过Name查找子节点
      * @param root
@@ -24,6 +23,14 @@ public:
      */
     static Node *seekNodeByName(Node *root, const std::string &name);
 
+    /**
+     * 获取子节点
+     * @param root
+     * @param name
+     * @param children
+     * @return
+     */
+    static std::vector<Node*>  getChildren(Node* root, const std::string& name , std::vector<Node*>& children);
 };
 
 

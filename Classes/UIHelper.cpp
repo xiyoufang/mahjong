@@ -5,6 +5,12 @@
 #include "UIHelper.h"
 
 
+/**
+ * 根据Tag获取节点
+ * @param root
+ * @param tag
+ * @return
+ */
 Node *UIHelper::seekNodeByTag(Node *root, int tag) {
     if (!root) {
         return nullptr;
@@ -26,6 +32,12 @@ Node *UIHelper::seekNodeByTag(Node *root, int tag) {
     return nullptr;
 }
 
+/**
+ * 根据名字搜索节点
+ * @param root
+ * @param name
+ * @return
+ */
 Node *UIHelper::seekNodeByName(Node *root, const std::string &name) {
     if (!root) {
         return nullptr;
@@ -44,4 +56,28 @@ Node *UIHelper::seekNodeByName(Node *root, const std::string &name) {
         }
     }
     return nullptr;
+}
+
+/**
+ * 获取全部指定名字子节点
+ * @param root
+ * @param name
+ * @param children
+ * @return
+ */
+std::vector<Node *> UIHelper::getChildren(Node *root, const std::string &name, std::vector<Node *> &children) {
+    if (!root) {
+        return children;
+    }
+    if (root->getName() == name) {
+        children.push_back(root);
+    }
+    const auto &arrayRootChildren = root->getChildren();
+    for (auto &subWidget : arrayRootChildren) {
+        Node *child = dynamic_cast<Node *>(subWidget);
+        if (child) {
+            getChildren(child, name, children);
+        }
+    }
+    return children;
 }

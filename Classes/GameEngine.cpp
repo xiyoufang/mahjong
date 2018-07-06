@@ -84,7 +84,7 @@ bool GameEngine::onUserEnter(IPlayer *pIPlayer) {
 /**
  * 开始游戏事件
  */
-void GameEngine::onGameStart() {
+bool GameEngine::onGameStart() {
     m_GameLogic->shuffle(m_cbRepertoryCard, sizeof(m_cbRepertoryCard));        //洗牌
     iDiceCount = static_cast<uint32_t>(rand() % 6 + 1 + rand() % 6 + 1);    //骰子点数
     if (m_cbBankerUser == INVALID_CHAIR) {
@@ -121,6 +121,46 @@ void GameEngine::onGameStart() {
         }
     }
     dispatchCardData(m_cbCurrentUser);
+    return true;
+}
+
+/**
+ * 玩家出牌
+ * @param outCard
+ */
+bool GameEngine::onUserOutCard(CMD_C_OutCard OutCard) {
+    if (m_cbUserAction[m_cbCurrentUser] != WIK_NULL) return true;            //存在操作不允许出牌，需要等操作结束
+    if (!m_GameLogic->removeCard(m_cbCardIndex[m_cbCurrentUser], OutCard.cbCardData)) { //删除扑克
+        return true;
+    }
+    //用户切换
+    m_cbProvideUser = m_cbCurrentUser;
+    m_cbProvideCard = OutCard.cbCardData;
+    m_cbCurrentUser = static_cast<uint8_t>((m_cbCurrentUser + m_CurrChair - 1) % m_CurrChair);  //切换当前玩家
+    m_cbGangCount = 0;                                                  //本手牌杠的情况还原
+    memset(m_cbGangCard, 0, sizeof(m_cbGangCard));                      //重置内存
+    m_bGangStatus = false;                                              //只要出完牌杠状态为false
+    m_bQiangGangStatus = false;                                         //抢杠状态为false
+    memset(m_cbTempUserAction, 0, sizeof(m_cbTempUserAction));          //清空临时动作
+    m_cbTargetUser = 0;                                                 //重置胡牌人员
+    m_cbUserAction[m_cbCurrentUser] = WIK_NULL;                         //出牌的玩家动作为NULL
+    m_cbPerformAction[m_cbCurrentUser] = WIK_NULL;                      //默认动作为NULL
+    //出牌记录
+    m_cbOutCardCount++;
+    m_cbOutCardUser = m_cbCurrentUser;
+    m_cbOutCardData = OutCard.cbCardData;
+
+    //构造数据
+    CMD_S_OutCard SOutCard;
+    memset(&SOutCard, 0, sizeof(CMD_S_OutCard));                        //初始化内存
+    SOutCard.cbOutCardUser = m_cbProvideUser;                           //出牌的用户
+    SOutCard.cbOutCardData = OutCard.cbCardData;                        //出牌的数据
+    for (uint8_t i = 0; i < GAME_PLAYER; i++) {
+        m_pIPlayer[i]->getGameEngineEventListener()->onOutCardEvent(SOutCard); //出牌时间
+    }
+    bool bAroseAction = estimateUserRespond(m_cbCurrentUser, OutCard.cbCardData, EstimateKind_OutCard);     //响应判断
+    if (!bAroseAction) dispatchCardData(m_cbCurrentUser);    //派发扑克
+    return true;
 }
 
 /**
@@ -132,7 +172,6 @@ void GameEngine::onGameStart() {
  * @return
  */
 bool GameEngine::dispatchCardData(uint8_t cbCurrentUser, bool bTail) {
-
 
     if ((m_cbOutCardUser != INVALID_CHAIR) && (m_cbOutCardData != 0))                        //往出牌记录里添加上一位出牌数据
     {
@@ -197,10 +236,16 @@ bool GameEngine::dispatchCardData(uint8_t cbCurrentUser, bool bTail) {
     return true;
 }
 
+bool GameEngine::estimateUserRespond(uint8_t cbCurrentUser, uint8_t cbCurrentCard, EstimateKind estimateKind) {
+    return false;
+}
+
 /**
  * 游戏结束
  * @param cbChairID
  */
-void GameEngine::onEventGameConclude(uint8_t cbChairID) {
+bool GameEngine::onEventGameConclude(uint8_t cbChairID) {
 
+    return true;
 }
+

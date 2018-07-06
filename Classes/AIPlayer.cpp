@@ -12,6 +12,5 @@
  */
 AIPlayer::AIPlayer(PlayerSex sex, IGameEngineEventListener *pGameEngineEventListener)
         : IPlayer(true, sex, pGameEngineEventListener) {
-
-
+    pGameEngineEventListener->setIPlayer(this);
 }

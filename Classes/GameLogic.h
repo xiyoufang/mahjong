@@ -81,6 +81,11 @@ struct tagAnalyseItem {
     uint8_t cbCenterCard[MAX_WEAVE];            //中心扑克
 };
 
+//听牌
+struct tagTingResult{
+    uint8_t cbTingCount;                           //听牌数量
+    uint8_t cbTingCard[MAX_INDEX];                 //听的牌
+};
 //////////////////////////////////////////////////////////////////////////
 
 //数组说明
@@ -120,6 +125,7 @@ public://分析函数
     bool analyseCard(const uint8_t cbCardIndex[MAX_INDEX], const uint8_t cbCardCount, tagWeaveItem WeaveItem[], uint8_t cbItemCount, CAnalyseItemArray &AnalyseItemArray); //分析扑克
     bool analyseTingCard(const uint8_t cbCardIndex[MAX_INDEX], tagWeaveItem WeaveItem[], uint8_t cbWeaveCount);    //是否听牌
     bool analyseCanHuCard(const uint8_t cbCardIndex[MAX_INDEX], tagWeaveItem WeaveItem[], uint8_t cbWeaveCount, uint8_t cbCurrentCard);   //分析是否可以胡牌
+    bool analyseTingCardResult(const uint8_t cbCardIndex[MAX_INDEX], tagWeaveItem WeaveItem[], uint8_t cbWeaveCount , tagTingResult& tingResult);
     bool canHu(const uint8_t cbCardIndexTemp[MAX_INDEX], const uint8_t cbCardCountTemp, const uint8_t cbCardIndex[MAX_INDEX], const uint8_t cbCardCount, tagWeaveItem WeaveItem[], uint8_t cbWeaveCount, CAnalyseItemArray &AnalyseItemArray); //能胡牌
 private:    //胡牌类型
     uint64_t pingHu(const uint8_t cbCardIndexTemp[MAX_INDEX], const uint8_t cbCardCountTemp, const uint8_t cbCardIndex[MAX_INDEX], const uint8_t cbCardCount, tagWeaveItem WeaveItem[], uint8_t cbWeaveCount, CAnalyseItemArray &AnalyseItemArray); //平胡

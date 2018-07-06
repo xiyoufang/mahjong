@@ -11,9 +11,22 @@
 
 class IPlayer;
 
+enum EstimateKind {
+    EstimateKind_OutCard,            //出牌效验
+    EstimateKind_GangCard,            //杠牌效验
+};
+
 class IGameEngineEventListener {
 
 public:
+
+    /**
+     * 设置玩家
+     * @param pIPlayer
+     */
+    virtual void setIPlayer(IPlayer *pIPlayer) {
+    }
+
     /**
      * 玩家进入通知
      * @param pIPlayer
@@ -34,6 +47,14 @@ public:
      * @return
      */
     virtual bool onSendCardEvent(CMD_S_SendCard SendCard) = 0;
+
+    /**
+     * 出牌事件
+     * @param OutCard
+     * @return
+     */
+    virtual bool onOutCardEvent(CMD_S_OutCard OutCard) = 0;
+
 };
 
 
@@ -87,13 +108,14 @@ public:
 
 public:
     void init();    //初始化数据
-    void onGameStart();     //开始游戏
-    void onEventGameConclude(uint8_t cbChairID); //结束游戏
+    bool onGameStart();     //开始游戏
+    bool onUserOutCard(CMD_C_OutCard OutCard);   //出牌命令
+    bool onEventGameConclude(uint8_t cbChairID); //结束游戏
     bool onUserEnter(IPlayer *pIPlayer);    //玩家进入
     bool dispatchCardData(uint8_t cbCurrentUser, bool bTail = false);    //发牌
-
+    bool estimateUserRespond(uint8_t cbCurrentUser, uint8_t cbCurrentCard, EstimateKind estimateKind);  //检测响应
 public:
-    static GameEngine* GetGameEngine();  //获取单例
+    static GameEngine *GetGameEngine();  //获取单例
 };
 
 

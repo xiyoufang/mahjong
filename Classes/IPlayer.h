@@ -6,6 +6,7 @@
 #define COCOSTUDIO_MAHJONG_IPLAYER_H
 
 #include "GameEngine.h"
+#include "GameSceneManager.h"
 
 class IPlayer {
 
@@ -18,7 +19,7 @@ public:
 
 protected:
     bool m_Android;          //是否机器人标识
-    unsigned char m_ChairID; //椅子编号
+    uint8_t m_ChairID; //椅子编号
     IGameEngineEventListener *m_pGameEngineEventListener; //游戏事件监听
     PlayerSex m_Sex;     //性别
 public:
@@ -42,7 +43,7 @@ public:
      * 设置椅子
      * @param chairID
      */
-    void setChairID(unsigned char chairID) {
+    void setChairID(uint8_t chairID) {
         m_ChairID = chairID;
     }
 
@@ -50,7 +51,7 @@ public:
      * 获取椅子编号
      * @return
      */
-    unsigned char getChairID() {
+    uint8_t getChairID() {
         return m_ChairID;
     }
 
