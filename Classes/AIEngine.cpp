@@ -9,10 +9,14 @@ AIEngine::AIEngine() {
     m_GameEngine = GameEngine::GetGameEngine();
     m_GameLogic = new GameLogic();
     m_cbSendCardData = 0;
-    memset(&m_cbCardIndex, 0, sizeof(m_cbCardIndex));
     memset(&m_cbWeaveItemCount, 0, sizeof(m_cbWeaveItemCount));
     memset(&m_cbDiscardCount, 0, sizeof(m_cbDiscardCount));
     memset(&m_cbDiscardCard, 0, sizeof(m_cbDiscardCard));
+    for (uint8_t i = 0; i < GAME_PLAYER; i++) {
+        memset(m_cbCardIndex[i], 0, sizeof(m_cbCardIndex[i]));
+        memset(m_WeaveItemArray[i], 0, sizeof(m_WeaveItemArray[i]));
+        memset(m_cbDiscardCard[i], 0, sizeof(m_cbDiscardCard[i]));
+    }
     m_MeChairID = INVALID_CHAIR;
     m_cbBankerChair = INVALID_CHAIR;
     GameSceneManager::getInstance()->getScene()->addChild(this, -1);
@@ -116,7 +120,9 @@ bool AIEngine::onOperateResultEvent(CMD_S_OperateResult OperateResult) {
             if (OperateResult.cbOperateUser == m_MeChairID) { //自己出牌操作
                 uint8_t cbReomveCard[] = {OperateResult.cbOperateCard, OperateResult.cbOperateCard};
                 m_GameLogic->removeCard(m_cbCardIndex[OperateResult.cbOperateUser], cbReomveCard, sizeof(cbReomveCard));
-                m_cbSendCardData = m_GameLogic->switchToCardData(m_cbCardIndex[m_MeChairID][0]); //碰完需要出一张
+                uint8_t cbTempCardData[MAX_COUNT] = {0};
+                m_GameLogic->switchToCardData(m_cbCardIndex[m_MeChairID], cbTempCardData, static_cast<uint8_t>(MAX_COUNT - 1 - (m_cbWeaveItemCount[m_MeChairID] * 3))); //碰完需要出一张
+                m_cbSendCardData = cbTempCardData[0];
                 scheduleOnce(CC_SCHEDULE_SELECTOR(AIEngine::sendCard), time(NULL) % 2 + 0.5f);
             }
             break;

@@ -14,12 +14,15 @@ GameLayer::GameLayer() {
     m_MeChairID = 0;
     m_GameEngine = GameEngine::GetGameEngine();  //构造游戏引擎
     m_GameLogic = new GameLogic;
-    memset(&m_cbCardIndex, 0, sizeof(m_cbCardIndex));
-    memset(&m_cbWeaveItemCount, 0, sizeof(m_cbWeaveItemCount));
-    memset(&m_cbDiscardCount, 0, sizeof(m_cbDiscardCount));
-    memset(&m_cbDiscardCard, 0, sizeof(m_cbDiscardCard));
     m_cbLeftCardCount = 0;
     m_cbBankerChair = INVALID_CHAIR;
+    memset(&m_cbWeaveItemCount, 0, sizeof(m_cbWeaveItemCount));
+    memset(&m_cbDiscardCount, 0, sizeof(m_cbDiscardCount));
+    for (uint8_t i = 0; i < GAME_PLAYER; i++) {
+        memset(m_cbCardIndex[i], 0, sizeof(m_cbCardIndex[i]));
+        memset(m_WeaveItemArray[i], 0, sizeof(m_WeaveItemArray[i]));
+        memset(m_cbDiscardCard[i], 0, sizeof(m_cbDiscardCard[i]));
+    }
     m_bOperate = false;
     m_bMove = false;
     m_pOperateNotifyGroup = NULL;

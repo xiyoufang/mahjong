@@ -51,11 +51,12 @@ void GameEngine::init() {
     memset(m_cbOperateCard, 0, sizeof(m_cbOperateCard));                              //操作的牌
     memset(m_cbPerformAction, 0, sizeof(m_cbPerformAction));                          //自动默认动作
     memset(m_cbFanShu, 0, sizeof(m_cbFanShu));                                        //结算番数
-    for (uint8_t i = 0; i < MAX_WEAVE; ++i) {
-        memset(&m_WeaveItemArray[i], 0, sizeof(m_WeaveItemArray[i]));
-    }
-    for (uint8_t i = 0; i < GAME_PLAYER; ++i) {
+
+    for (uint8_t i = 0; i < GAME_PLAYER; i++) {
         memset(&m_cbCardIndex[i], 0, sizeof(m_cbCardIndex[i]));
+        memset(&m_cbPassPeng[i], 0, sizeof(m_cbPassPeng[i]));
+        memset(&m_cbDiscardCard[i], 0, sizeof(m_cbDiscardCard[i]));
+        memset(&m_WeaveItemArray[i], 0, sizeof(m_WeaveItemArray[i]));
     }
 }
 
@@ -440,6 +441,7 @@ bool GameEngine::onUserOperateCard(CMD_C_OperateCard OperateCard) {
             default:
                 break;
         }
+        m_cbCurrentUser = cbTargetUser;                                                                           //设置当前玩家为目标玩家
         CMD_S_OperateResult OperateResult;                                                                        //构造操作结果
         OperateResult.cbOperateUser = cbTargetUser;                                                               //操作玩家
         OperateResult.cbOperateCard = cbTargetCard;                                                               //操作扑克
@@ -449,7 +451,6 @@ bool GameEngine::onUserOperateCard(CMD_C_OperateCard OperateCard) {
         for (int j = 0; j < m_CurrChair; j++) {
             m_pIPlayer[j]->getGameEngineEventListener()->onOperateResultEvent(OperateResult);                     //操作结果
         }
-        m_cbCurrentUser = cbTargetUser;                                                                           //设置当前玩家为目标玩家
         if (cbTargetAction == WIK_G)                                                                              //杠牌处理
         {
             m_bQiangGangStatus = true;    // 抢杠状态
@@ -566,6 +567,8 @@ bool GameEngine::onUserOperateCard(CMD_C_OperateCard OperateCard) {
                 onEventGameConclude(INVALID_CHAIR);                                                                        //结束游戏
                 return true;
             }
+            default:
+                break;
         }
         return true;
     }
@@ -578,7 +581,7 @@ bool GameEngine::onUserOperateCard(CMD_C_OperateCard OperateCard) {
  * @param cbChairID
  */
 bool GameEngine::onEventGameConclude(uint8_t cbChairID) {
-
+    cocos2d::log("----游戏结束----");
     return true;
 }
 
