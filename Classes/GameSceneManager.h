@@ -72,6 +72,11 @@ public:
     cocos2d::Size getVisibleSize();
 
     /**
+     * 结束游戏
+     */
+    void end();
+
+    /**
      * 获取GameSceneManager单例
      * @return
      */

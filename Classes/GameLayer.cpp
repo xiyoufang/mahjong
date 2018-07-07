@@ -1492,8 +1492,20 @@ void GameLayer::onTouchEnded(ui::Widget *pWidget, const char *pName) {
         m_pGameOverNode = NULL;
         m_GameEngine->onGameRestart();              //重新开始游戏
     }
+    else if(strcmp(pName, "Button_Exit") == 0){     //退出游戏按钮
+        GameSceneManager::getInstance()->confirm("退出游戏后，本局游戏将直接结束无法恢复，确定是否退出？", false, false, this, CC_CALLFUNCN_SELECTOR(GameLayer::exitGame));
+    }
+    else if(strcmp(pName, "Button_Set") == 0){      //游戏设置按钮
+        GameSceneManager::getInstance()->alert("你点击了设置按钮，暂时什么都还没有！");
+    }
 }
 
+/**
+ * 退出游戏
+ */
+void GameLayer::exitGame(Node* ){
+    GameSceneManager::getInstance()->end();
+}
 
 /**
  * 椅子视图切换成界面视图

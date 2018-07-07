@@ -54,6 +54,16 @@ cocos2d::Size GameSceneManager::getVisibleSize() {
 }
 
 /**
+ * 结束游戏
+ */
+void GameSceneManager::end() {
+    Director::getInstance()->end();
+#if (CC_TARGET_PLATFORM == CC_PLATFORM_IOS)
+    exit(0);
+#endif
+}
+
+/**
  * 提示框
  * @param strContent
  *  内容

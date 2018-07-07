@@ -97,18 +97,25 @@ void AlertLayer::setCallback(cocos2d::Node *okTarget, SEL_CallFuncN okSelector, 
  * @param pName
  */
 void AlertLayer::onTouchEnded(ui::Widget *pWidget, const char *pName) {
+    bool isRemove = false;
     if (strcmp(pName, "Button_Alert_OK") == 0) {
         if (m_pOKSelectorTarget != NULL && m_OKSelector != NULL) {
             cocos2d::log("call button alert ok!");
             (m_pOKSelectorTarget->*m_OKSelector)(m_pLayer); //OK回调
+        } else {
+            m_pLayer->removeFromParent();
+            isRemove = true;
         }
     } else if (strcmp(pName, "Button_Alert_Cancel") == 0) {
         if (m_pCancelSelectorTarget != NULL && m_CancelSelector != NULL) {
             cocos2d::log("call button alert cancel!");
             (m_pCancelSelectorTarget->*m_CancelSelector)(m_pLayer); //取消回调
+        } else {
+            m_pLayer->removeFromParent();
+            isRemove = true;
         }
     }
-    if (m_autoClose) {   //关闭当前窗口
+    if (m_autoClose && !isRemove) {   //关闭当前窗口
         m_pLayer->removeFromParent();
     }
 }

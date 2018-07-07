@@ -91,7 +91,7 @@ private:
     uint8_t switchChairViewID(uint8_t cbViewID);    //视图位置切换成椅子位置
     void playSound(std::string file);               //播放声音
     void removeEffectNode(std::string strNodeName); //移除特效
-
+    void exitGame(Node* pNode);                     //退出游戏
 };
 
 
