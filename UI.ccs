@@ -230,6 +230,16 @@
           <Image Name="timer_9.png" />
           <Image Name="tingbg.png" />
         </Folder>
+        <Folder Name="GameOverLayer">
+          <Image Name="avatar_bg.png" />
+          <Image Name="im_close_btn.png" />
+          <Image Name="im_over_bg.png" />
+          <Image Name="over_banker.png" />
+          <Image Name="result_draw.png" />
+          <Image Name="result_lose.png" />
+          <Image Name="result_win.png" />
+          <Image Name="winner.png" />
+        </Folder>
         <Folder Name="HelloLayer">
           <Image Name="bt_logon.png" />
           <Image Name="im_bg.png" />
@@ -246,6 +256,7 @@
         <Project Name="EffectPeng.csd" Type="Node" />
         <Project Name="EffectZm.csd" Type="Node" />
         <Project Name="GameLayer.csd" Type="Layer" />
+        <Project Name="GameOverLayer.csd" Type="Layer" />
         <Project Name="Gang0.csd" Type="Node" />
         <Project Name="Gang1.csd" Type="Node" />
         <Project Name="HelloLayer.csd" Type="Layer" />

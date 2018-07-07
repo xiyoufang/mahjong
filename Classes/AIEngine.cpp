@@ -9,22 +9,30 @@ AIEngine::AIEngine() {
     m_GameEngine = GameEngine::GetGameEngine();
     m_GameLogic = new GameLogic();
     m_cbSendCardData = 0;
-    memset(&m_cbWeaveItemCount, 0, sizeof(m_cbWeaveItemCount));
-    memset(&m_cbDiscardCount, 0, sizeof(m_cbDiscardCount));
-    memset(&m_cbDiscardCard, 0, sizeof(m_cbDiscardCard));
-    for (uint8_t i = 0; i < GAME_PLAYER; i++) {
-        memset(m_cbCardIndex[i], 0, sizeof(m_cbCardIndex[i]));
-        memset(m_WeaveItemArray[i], 0, sizeof(m_WeaveItemArray[i]));
-        memset(m_cbDiscardCard[i], 0, sizeof(m_cbDiscardCard[i]));
-    }
     m_MeChairID = INVALID_CHAIR;
-    m_cbBankerChair = INVALID_CHAIR;
+    initGame();
     GameSceneManager::getInstance()->getScene()->addChild(this, -1);
     //将节点加入到场景，用于启动定时任务
 }
 
 AIEngine::~AIEngine() {
     cocos2d::log("~AIEngine");
+}
+
+/**
+ * 初始化游戏变量
+ */
+void AIEngine::initGame(){
+    m_cbSendCardData = 0;
+    m_cbLeftCardCount = 0;
+    m_cbBankerChair = INVALID_CHAIR;
+    memset(&m_cbWeaveItemCount, 0, sizeof(m_cbWeaveItemCount));
+    memset(&m_cbDiscardCount, 0, sizeof(m_cbDiscardCount));
+    for (uint8_t i = 0; i < GAME_PLAYER; i++) {
+        memset(m_cbCardIndex[i], 0, sizeof(m_cbCardIndex[i]));
+        memset(m_WeaveItemArray[i], 0, sizeof(m_WeaveItemArray[i]));
+        memset(m_cbDiscardCard[i], 0, sizeof(m_cbDiscardCard[i]));
+    }
 }
 
 void AIEngine::setIPlayer(IPlayer *pIPlayer) {
@@ -38,6 +46,7 @@ bool AIEngine::onUserEnterEvent(IPlayer *pIPlayer) {
 
 bool AIEngine::onGameStartEvent(CMD_S_GameStart GameStart) {
     cocos2d::log("机器人接收到游戏开始事件");
+    initGame();
     m_cbLeftCardCount = GameStart.cbLeftCardCount;
     m_cbBankerChair = GameStart.cbBankerUser;
     m_GameLogic->switchToCardIndex(GameStart.cbCardData, MAX_COUNT - 1, m_cbCardIndex[m_MeChairID]);
@@ -45,14 +54,14 @@ bool AIEngine::onGameStartEvent(CMD_S_GameStart GameStart) {
 }
 
 bool AIEngine::onSendCardEvent(CMD_S_SendCard SendCard) {
-    cocos2d::log("机器人接收到发牌事件");
     if (SendCard.cbCurrentUser == m_MeChairID) { //出牌
         m_cbLeftCardCount--;
         if (SendCard.cbCurrentUser == m_MeChairID) {
+            cocos2d::log("机器人接收到发牌事件");
             m_cbCardIndex[m_MeChairID][m_GameLogic->switchToCardIndex(SendCard.cbCardData)]++;
         }
         m_cbSendCardData = SendCard.cbCardData;
-        scheduleOnce(CC_SCHEDULE_SELECTOR(AIEngine::sendCard), time(NULL) % 2 + 0.5f);
+        scheduleOnce(CC_SCHEDULE_SELECTOR(AIEngine::sendCard), time(NULL) % 2 + 0.8f);
     }
     return true;
 }
@@ -63,8 +72,8 @@ bool AIEngine::onSendCardEvent(CMD_S_SendCard SendCard) {
  * @return
  */
 bool AIEngine::onOutCardEvent(CMD_S_OutCard OutCard) {
-    cocos2d::log("机器人接收到出牌事件");
     if (OutCard.cbOutCardUser == m_MeChairID) {
+        cocos2d::log("机器人接收到出牌事件");
         m_cbCardIndex[m_MeChairID][m_GameLogic->switchToCardIndex(OutCard.cbOutCardData)]--;
     }
     m_cbDiscardCard[OutCard.cbOutCardUser][m_cbDiscardCount[OutCard.cbOutCardUser]++] = OutCard.cbOutCardData;
@@ -162,10 +171,21 @@ bool AIEngine::onOperateResultEvent(CMD_S_OperateResult OperateResult) {
 }
 
 /**
+ * 结束
+ * @param GameEnd
+ * @return
+ */
+bool AIEngine::onGameEndEvent(CMD_S_GameEnd GameEnd) {
+    cocos2d::log("机器人接收到游戏结束事件");
+    return true;
+}
+
+/**
  * 出牌
  * @param f
  */
 void AIEngine::sendCard(float f) {
+    cocos2d::log("机器人出牌:%x",m_cbSendCardData);
     CMD_C_OutCard OutCard;
     memset(&OutCard, 0, sizeof(CMD_C_OutCard));
     OutCard.cbCardData = m_cbSendCardData;

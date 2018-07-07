@@ -70,6 +70,13 @@ public:
      */
     virtual bool onOperateResultEvent(CMD_S_OperateResult OperateResult) = 0;
 
+    /**
+     * 游戏结束事件
+     * @param GameEnd
+     * @return
+     */
+    virtual bool onGameEndEvent(CMD_S_GameEnd GameEnd) = 0;
+
 };
 
 
@@ -78,9 +85,11 @@ class GameEngine {
 private:
     IPlayer *m_pIPlayer[GAME_PLAYER];        //游戏玩家
     GameLogic *m_GameLogic;
-    uint8_t m_CurrChair;                    //当前椅子数量
-    uint32_t iDiceCount;                     //骰子点数
-    uint8_t m_cbBankerUser;                   //庄家用户
+    int64_t m_lGameScoreTable[GAME_PLAYER];           //记录总分
+    uint32_t iDiceCount;                              //骰子点数
+    uint8_t m_CurrChair;                              //当前椅子数量
+
+    uint8_t m_cbBankerUser;                           //庄家用户
     uint8_t m_cbCardIndex[GAME_PLAYER][MAX_INDEX];    //用户扑克
     uint8_t m_cbMa;                                   //买马数量
     uint8_t m_cbProvideCard;                          //当前供应的牌
@@ -125,6 +134,7 @@ public:
 public:
     void init();    //初始化数据
     bool onGameStart();     //开始游戏
+    bool onGameRestart();   //重新开始
     bool onUserOutCard(CMD_C_OutCard OutCard);   //出牌命令
     bool onEventGameConclude(uint8_t cbChairID); //结束游戏
     bool onUserEnter(IPlayer *pIPlayer);    //玩家进入

@@ -23,6 +23,7 @@ class GameLayer : public BaseUILayer, IGameEngineEventListener {
 private:
     GameEngine *m_GameEngine;           //游戏引擎
     GameLogic *m_GameLogic;             //游戏逻辑
+    Node *m_pGameOverNode;              //结算节点
     Node *m_FaceFrame[GAME_PLAYER];     //头像信息节点
     Node *m_PlayerPanel[GAME_PLAYER];   //玩家牌的区域
     Node *m_pOperateNotifyGroup;        //操作组
@@ -56,10 +57,12 @@ protected:
     virtual void initLayer();           //初始化层
 public:
     virtual Node *GetLayer();           //获取层Layer
+    void initGame();                    //初始化游戏变量
     void aiEnterGame(float f);          //机器人进入游戏
     void sendCardTimerUpdate(float f);  //倒计时
     void onCardTouch(Ref *ref, ui::Widget::TouchEventType eventType);   //触摸牌的事件
     void onOperateTouch(Ref *ref, ui::Widget::TouchEventType eventType);//操作事件
+
 private:
     virtual bool onUserEnterEvent(IPlayer *pIPlayer);            //玩家进入事件
     virtual bool onGameStartEvent(CMD_S_GameStart GameStart);    //游戏开始事件
@@ -67,6 +70,7 @@ private:
     virtual bool onOutCardEvent(CMD_S_OutCard OutCard);          //出牌事件
     virtual bool onOperateNotifyEvent(CMD_S_OperateNotify OperateNotify);   //操作通知事件
     virtual bool onOperateResultEvent(CMD_S_OperateResult OperateResult);   //操作结果事件
+    virtual bool onGameEndEvent(CMD_S_GameEnd GameEnd);                     //移除特效
 
 private:
     bool showAndUpdateHandCard();                                                   //显示手上的牌
@@ -75,6 +79,7 @@ private:
     bool showOperateNotify(CMD_S_OperateNotify OperateNotify);                      //显示操作通知
     bool showAndPlayOperateEffect(uint8_t cbViewID,uint8_t cbOperateCode, bool bZm);//播放特效
     bool showTingResult(const uint8_t cbCardIndex[MAX_INDEX], tagWeaveItem WeaveItem[], uint8_t cbWeaveCount);   //显示听牌的结果
+    bool showAndUpdateUserScore(int64_t lGameScoreTable[GAME_PLAYER]);             //更新分数
     ui::ImageView *createHandCardImageView(uint8_t cbViewID, uint8_t cbData);   //创建牌的ImageView
     ui::ImageView *createDiscardCardImageView(uint8_t cbViewID, uint8_t cbData);//创建出牌的ImageView
     std::string getDiscardCardImagePath(uint8_t cbViewID, uint8_t cbData);      //获取牌的图片路径

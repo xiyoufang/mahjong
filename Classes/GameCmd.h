@@ -82,13 +82,13 @@ struct CMD_S_GameEnd {
     uint64_t dwHuRight[GAME_PLAYER];                 //胡牌类型
     uint8_t cbHuKind[GAME_PLAYER];                   //胡牌方式
     uint8_t cbHuSpecial[GAME_PLAYER];                //特殊情况
-    uint64_t lGameScore[GAME_PLAYER];                //单局积分
-    uint64_t lGameScoreTable[GAME_PLAYER];           //总局积分
     uint8_t cbWeaveCount[GAME_PLAYER];               //组合数量
     CMD_WeaveItem WeaveItemArray[GAME_PLAYER][MAX_WEAVE];    //组合扑克
-    uint8_t cbMaCard[MAX_MA];                        //扎鸟
-    uint64_t lMaGameScore[GAME_PLAYER];              //单局马积分
-    uint64_t lNormalGameScore[GAME_PLAYER];          //单局常规积分
+    uint8_t cbMaCard[MAX_MA];                                //扎鸟
+    int64_t lMaGameScore[GAME_PLAYER];                      //单局马积分
+    int64_t lNormalGameScore[GAME_PLAYER];                  //单局常规积分
+    int64_t lGameScore[GAME_PLAYER];                //单局积分
+    int64_t lGameScoreTable[GAME_PLAYER];           //总局积分
 };
 
 //出牌命令

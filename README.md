@@ -42,6 +42,7 @@
 |HelloLayer.csd|欢迎界面层|
 |AlertLayer.csd|弹框层|
 |GameLayer.csd|游戏层|
+|GameOverLayer.csd|游戏结算层|
 |Gang0.csd|横向显示杠的节点|
 |Peng0.csd|横向显示碰的节点|
 |Gang1.csd|竖向显示杠的节点|
