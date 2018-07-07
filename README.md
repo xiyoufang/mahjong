@@ -1,9 +1,17 @@
 # COCOS2D-X 单机麻将
 
 #### 项目介绍
-基于最新版 Cocos2d-X 3.17 与 cocostudio V3.10 开发的单机麻将游戏，麻将算法为商业级麻将服务器端算法。
+基于最新版 Cocos2d-X 3.17 与 cocostudio V3.10 开发的单机麻将游戏，麻将算法为商业级麻将服务器端算法，整个项目代码精简、注释详细。
+
+- 如果你刚刚接触Cocos2d-X 这绝对是个不错的入门项目
+- 如果是你C++初学者或者其他语言转游戏开发，这项目没有复杂的语法绝对是一个不错的学习项目
+- 如果你是游戏开发从业者想转行棋牌行业，这项目的棋牌算法绝对能够给予你启发
 
 ![截图](https://images.gitee.com/uploads/images/2018/0706/103629_69b97848_369917.jpeg "Simulator Screen Shot - iPhone 5s - 2018-07-06 at 10.21.08.jpg")
+
+![输入图片说明](https://images.gitee.com/uploads/images/2018/0707/141833_47a9c5ce_369917.jpeg "Simulator Screen Shot - iPhone 5s - 2018-07-07 at 11.22.14副本.jpg")
+
+![输入图片说明](https://images.gitee.com/uploads/images/2018/0707/141846_21c4009b_369917.jpeg "Simulator Screen Shot - iPhone 5s - 2018-07-07 at 14.01.40副本.jpg")
 
 #### 软件架构
 
