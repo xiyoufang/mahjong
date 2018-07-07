@@ -104,3 +104,5 @@
 #### 其他
 
 1. 个人博客 [www.xiyoufang.com](https://www.xiyoufang.com) 获取更多软件开发信息
+2. gitee项目首页 [https://gitee.com/xiyoufang/cocostudio-mahjong](https://gitee.com/xiyoufang/cocostudio-mahjong)
+3. github项目首页 [https://github.com/xiyoufang/mahjong](https://github.com/xiyoufang/mahjong)
