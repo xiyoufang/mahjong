@@ -391,23 +391,24 @@ uint8_t GameLogic::analyseHuCard(const uint8_t *cbCardIndex, tagWeaveItem *Weave
     //************************************************************************************************//
 
     //结果判断
-    if (huRight != 0x0) {                                                    //胡牌
-        uint8_t cbFs = getHuFanShu(huRight, huKind, huSpecial);                //计算番数
+    if (huRight != 0x0) {                                                   //胡牌
+        /*//有些地方麻将规则胡牌和番数有关，需要在此处理
+        uint8_t cbFs = getHuFanShu(huRight, huKind, huSpecial);             //计算番数
         //如果bCheck为true，永远返回false，不存在枪杆
-        if ((huKind & CHK_QG) == 0x0 && !bZimo) {                            //不是枪杆并且不是自摸才判定
+        if ((huKind & CHK_QG) == 0x0 && !bZimo) {                           //不是枪杆并且不是自摸才判定
             if (!bCheck && cbFs <= cbFanShu)                                //番数如果不大于这轮最大的番数则不可以胡牌，枪杆除外。
             {
                 return WIK_NULL;
             }
         }
         cbFanShu = cbFs;                                                    //暂存番数
-        if (cbFs < 0x2)                                                        //1分的平湖
+        if (cbFs < 0x2)                                                     //1分的平湖
         {
-            if ((huKind & CHK_ZM) == 0x0 && (huKind & CHK_QG) == 0x0)        //黎川麻将不能胡
+            if ((huKind & CHK_ZM) == 0x0 && (huKind & CHK_QG) == 0x0)       //麻将不能胡
             {
                 return WIK_NULL;
             }
-        }
+        }*/
         return WIK_H;
     }
     return WIK_NULL;

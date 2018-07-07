@@ -138,7 +138,6 @@ bool GameEngine::onUserOutCard(CMD_C_OutCard OutCard) {
     //用户切换
     m_cbProvideUser = m_cbCurrentUser;
     m_cbProvideCard = OutCard.cbCardData;
-    m_cbCurrentUser = static_cast<uint8_t>((m_cbCurrentUser + m_CurrChair - 1) % m_CurrChair);  //切换当前玩家
     m_cbGangCount = 0;                                                  //本手牌杠的情况还原
     memset(m_cbGangCard, 0, sizeof(m_cbGangCard));                      //重置内存
     m_bGangStatus = false;                                              //只要出完牌杠状态为false
@@ -161,7 +160,10 @@ bool GameEngine::onUserOutCard(CMD_C_OutCard OutCard) {
         m_pIPlayer[i]->getGameEngineEventListener()->onOutCardEvent(SOutCard); //出牌时间
     }
     bool bAroseAction = estimateUserRespond(m_cbCurrentUser, OutCard.cbCardData, EstimateKind_OutCard);     //响应判断
-    if (!bAroseAction) dispatchCardData(m_cbCurrentUser);    //派发扑克
+    if (!bAroseAction){
+        m_cbCurrentUser = static_cast<uint8_t>((m_cbCurrentUser + m_CurrChair - 1) % m_CurrChair);          //切换当前玩家发牌
+        dispatchCardData(m_cbCurrentUser);    //派发扑克
+    }
     return true;
 }
 
