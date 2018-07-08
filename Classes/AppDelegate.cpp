@@ -24,6 +24,7 @@
 
 #include "AppDelegate.h"
 #include "HelloWorldScene.h"
+#include "GameConfig.h"
 
 // #define USE_AUDIO_ENGINE 1
 // #define USE_SIMPLE_AUDIO_ENGINE 1
@@ -100,6 +101,8 @@ bool AppDelegate::applicationDidFinishLaunching() {
     std::vector<std::string> searchPath;
     searchPath.push_back("res");
     cocos2d::FileUtils::getInstance()->setSearchPaths(searchPath);
+    //加载配置
+    GameConfig::getInstance()->loadConfig();
     // create a scene. it's an autorelease object
     new ViewControl();
     return true;

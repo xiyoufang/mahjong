@@ -7,6 +7,8 @@
 #include "AIPlayer.h"
 #include "RealPlayer.h"
 #include "AIEngine.h"
+#include "SetLayer.h"
+#include "GameConfig.h"
 
 
 GameLayer::GameLayer() {
@@ -33,7 +35,7 @@ GameLayer::~GameLayer() {
 /**
  * 初始化游戏变量
  */
-void GameLayer::initGame(){
+void GameLayer::initGame() {
     m_cbLeftCardCount = 0;
     m_cbBankerChair = INVALID_CHAIR;
     memset(&m_cbWeaveItemCount, 0, sizeof(m_cbWeaveItemCount));
@@ -49,7 +51,7 @@ void GameLayer::initGame(){
  * AI 进入游戏
  * @param f
  */
-void GameLayer::aiEnterGame(float ) {
+void GameLayer::aiEnterGame(float) {
     //机器人玩家加入游戏，返回false说明已经满了，随机生成性别
     if (!m_GameEngine->onUserEnter(new AIPlayer(time(NULL) % 2 == 0 ? IPlayer::MALE : IPlayer::FEMALE, new AIEngine))) {
         unschedule(CC_SCHEDULE_SELECTOR(GameLayer::aiEnterGame));//人满，关闭定时任务
@@ -442,7 +444,7 @@ bool GameLayer::onGameEndEvent(CMD_S_GameEnd GameEnd) {
     //显示结算界面
     m_pGameOverNode = CSLoader::createNode("GameOverLayer.csb");
     m_pGameOverNode->setAnchorPoint(Vec2(0.5, 0.5));
-    m_pGameOverNode->setPosition(GameSceneManager::getInstance()->getVisibleSize()/2);
+    m_pGameOverNode->setPosition(GameSceneManager::getInstance()->getVisibleSize() / 2);
     m_pLayer->addChild(m_pGameOverNode);
     ui::Button *pOverClose = dynamic_cast<ui::Button *>(UIHelper::seekNodeByName(m_pGameOverNode, "Button_Over_Close"));    //关闭结算界面按钮
     pOverClose->addTouchEventListener(CC_CALLBACK_2(GameLayer::onTouch, this));
@@ -454,7 +456,7 @@ bool GameLayer::onGameEndEvent(CMD_S_GameEnd GameEnd) {
     //显示牌
     for (uint8_t i = 0; i < m_CurPlayer; i++) {
         uint8_t cbViewID = switchViewChairID(i);
-        Node *pPlayerViewNode = UIHelper::seekNodeByName(m_pGameOverNode, "PlayerView_" + utility::toString((int)cbViewID));
+        Node *pPlayerViewNode = UIHelper::seekNodeByName(m_pGameOverNode, "PlayerView_" + utility::toString((int) cbViewID));
         ui::ImageView *pOverImgHead = dynamic_cast<ui::ImageView *>(UIHelper::seekNodeByName(pPlayerViewNode, "ImageView_Over_Head")); //头像
         ui::Text *pOverScoreText = dynamic_cast<ui::Text *>(UIHelper::seekNodeByName(pPlayerViewNode, "Text_Over_Score"));       //分数
         pOverImgHead->loadTexture(utility::toString("res/GameLayer/im_defaulthead_", m_Players[i]->getSex() == IPlayer::FEMALE ? 0 : 1, ".png"));    //设置头像
@@ -624,7 +626,7 @@ bool GameLayer::onGameEndEvent(CMD_S_GameEnd GameEnd) {
     return true;
 }
 
-void GameLayer::sendCardTimerUpdate(float ) {
+void GameLayer::sendCardTimerUpdate(float) {
     m_iOutCardTimeOut = static_cast<uint8_t>((m_iOutCardTimeOut-- < 1) ? 0 : m_iOutCardTimeOut);
     ui::ImageView *pTimer1 = dynamic_cast<ui::ImageView *>(UIHelper::seekNodeByName(m_pLayer, "Image_Timer_1"));
     ui::ImageView *pTimer0 = dynamic_cast<ui::ImageView *>(UIHelper::seekNodeByName(m_pLayer, "Image_Timer_0"));
@@ -1299,7 +1301,7 @@ std::string GameLayer::getDiscardCardImagePath(uint8_t cbViewID, uint8_t cbData)
  * @param cbData
  * @return
  */
-std::string GameLayer::getBackCardImagePath(uint8_t cbViewID, uint8_t ) {
+std::string GameLayer::getBackCardImagePath(uint8_t cbViewID, uint8_t) {
     std::string strImagePath = "";
     switch (cbViewID) {
         case 0: {
@@ -1487,23 +1489,21 @@ void GameLayer::onCardTouch(Ref *ref, ui::Widget::TouchEventType eventType) {
 
 
 void GameLayer::onTouchEnded(ui::Widget *pWidget, const char *pName) {
-    if (strcmp(pName, "Button_Over_Close") == 0){    //关闭按钮
+    if (strcmp(pName, "Button_Over_Close") == 0) {    //关闭按钮
         m_pGameOverNode->removeFromParent();
         m_pGameOverNode = NULL;
         m_GameEngine->onGameRestart();              //重新开始游戏
-    }
-    else if(strcmp(pName, "Button_Exit") == 0){     //退出游戏按钮
+    } else if (strcmp(pName, "Button_Exit") == 0) {     //退出游戏按钮
         GameSceneManager::getInstance()->confirm("退出游戏后，本局游戏将直接结束无法恢复，确定是否退出？", false, false, this, CC_CALLFUNCN_SELECTOR(GameLayer::exitGame));
-    }
-    else if(strcmp(pName, "Button_Set") == 0){      //游戏设置按钮
-        GameSceneManager::getInstance()->alert("你点击了设置按钮，暂时什么都还没有！");
+    } else if (strcmp(pName, "Button_Set") == 0) {      //游戏设置按钮
+        m_pLayer->addChild(SetLayer::create()->GetLayer()); //显示设置层
     }
 }
 
 /**
  * 退出游戏
  */
-void GameLayer::exitGame(Node* ){
+void GameLayer::exitGame(Node *) {
     GameSceneManager::getInstance()->end();
 }
 
@@ -1530,6 +1530,9 @@ uint8_t GameLayer::switchChairViewID(uint8_t cbViewID) {
  * @param file
  */
 void GameLayer::playSound(std::string file) {
-    CocosDenshion::SimpleAudioEngine::getInstance()->playEffect(file.c_str(), false);
-    CocosDenshion::SimpleAudioEngine::getInstance()->setEffectsVolume(0.8);   //音量
+    float volume = GameConfig::getInstance()->m_EffectsVolume;
+    if (volume > 0) {
+        CocosDenshion::SimpleAudioEngine::getInstance()->setEffectsVolume(volume);   //音量
+        CocosDenshion::SimpleAudioEngine::getInstance()->playEffect(file.c_str(), false);
+    }
 }

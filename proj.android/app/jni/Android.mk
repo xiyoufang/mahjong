@@ -26,7 +26,9 @@ LOCAL_SRC_FILES := $(LOCAL_PATH)/hellocpp/main.cpp \
                 $(LOCAL_PATH)/../../../Classes/RealPlayer.cpp \
                 $(LOCAL_PATH)/../../../Classes/UIHelper.cpp \
                 $(LOCAL_PATH)/../../../Classes/ViewControl.cpp \
-                $(LOCAL_PATH)/../../../Classes/ViewObject.cpp
+                $(LOCAL_PATH)/../../../Classes/ViewObject.cpp \
+                $(LOCAL_PATH)/../../../Classes/SetLayer.cpp \
+                $(LOCAL_PATH)/../../../Classes/GameConfig.cpp
 
 LOCAL_C_INCLUDES := $(LOCAL_PATH)/../../../Classes
 

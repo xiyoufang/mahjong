@@ -77,6 +77,8 @@
 |BaseUILayer.h/BaseUILayer.cpp|Cocostudio界面基类，封装了部分按钮事件绑定功能|
 |HelloLayer.h/HelloLayer.cpp|游戏初始欢迎界面类|
 |GameLayer.h/GameLayer.cpp|游戏层界面类，用来控制游戏的显示|
+|SetLayer.h/SetLayer.cpp|游戏设置层|
+|GameConfig.h/GameConfig.cpp|加载与存储游戏设置信息|
 |ViewControl.h/ViewControl.cpp|通过观察者模式，控制界面切换|
 |ViewObject.h/ViewObject.cpp|封装界面切换指令与数据|
 |UIHelper.h/UIHelper.cpp|UI工具类，封装节点查找方法|

@@ -69,6 +69,8 @@ list(APPEND GAME_SOURCE
      Classes/UIHelper.cpp
      Classes/ViewControl.cpp
      Classes/ViewObject.cpp
+     Classes/SetLayer.cpp
+     Classes/GameConfig.cpp
      )
 list(APPEND GAME_HEADER
      Classes/AIEngine.h
@@ -90,6 +92,8 @@ list(APPEND GAME_HEADER
      Classes/ViewControl.h
      Classes/ViewObject.h
      Classes/FvMask.h
+     Classes/SetLayer.h
+     Classes/GameConfig.h
      )
 
 if(ANDROID)

@@ -266,6 +266,11 @@
         <Project Name="Peng0.csd" Type="Node" />
         <Project Name="Peng1.csd" Type="Node" />
         <Project Name="SignAnim.csd" Type="Node" />
+        <Project Name="SetLayer.csd" Type="Layer" />
+        <Folder Name="SetLayer">
+          <Image Name="im_close.png" />
+          <Image Name="im_bg.png" />
+        </Folder>
       </RootFolder>
     </Group>
   </SolutionFolder>
