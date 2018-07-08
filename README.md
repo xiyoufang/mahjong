@@ -109,3 +109,7 @@
 1. 个人博客 [www.xiyoufang.com](https://www.xiyoufang.com) 获取更多软件开发信息
 2. gitee项目首页 [https://gitee.com/xiyoufang/cocostudio-mahjong](https://gitee.com/xiyoufang/cocostudio-mahjong)
 3. github项目首页 [https://github.com/xiyoufang/mahjong](https://github.com/xiyoufang/mahjong)
+
+### 您也可以加入游戏开发交流QQ群：112958956 ，一起讨论游戏开发技术。
+
+![输入图片说明](https://images.gitee.com/uploads/images/2018/0708/183503_d1f599f2_369917.png "temp_qrcode_share_112958956.png")
